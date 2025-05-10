@@ -1,4 +1,4 @@
-## Hi ther 👋
+## Hi there 👋
 
 - 🔭 I’m currently working on my Computer Science Degree at USC
 - 🌱 I’m currently learning Software Engineering and Intro to Computer Architecture
