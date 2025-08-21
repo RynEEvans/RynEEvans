@@ -5,4 +5,4 @@
 - 💬 Ask me about videogames
 - 📫 How to reach me: ryanee@email.sc.edu
 - 😄 Pronouns: he/him
-- ⚡ Fun fact: I have a twin brother
+- ⚡ Fun fact: [I have a twin!](https://github.com/JalenEvans)
