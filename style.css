@@ -21,7 +21,13 @@
 
 html, body {
     height: 100%;
-    overflow: hidden;
+}
+
+@media (max-width: 700px) {
+    html, body {
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
 }
 
 body {
@@ -36,6 +42,14 @@ body {
     left: 50%;
     top: 0;
     transform-origin: top center;
+}
+
+@media (max-width: 700px) {
+    .scale-wrap {
+        position: static;
+        left: auto;
+        top: auto;
+    }
 }
 
 /* ============================================ */
@@ -808,46 +822,154 @@ body {
     }
 }
 
-/* Mobile: 2 columns, featured becomes wide */
+/* Mobile: 2 columns, featured in middle */
 @media (max-width: 700px) {
     .content {
-        padding: 12px;
+        padding: 8px;
+        height: auto;
+        min-height: 100vh;
     }
 
-    .tile-grid,
-    .tile-grid-alt {
+    .tab-content.active {
+        height: auto;
+        overflow: visible;
+    }
+
+    .tile-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+        max-width: 100%;
     }
 
     .tile-featured,
     .tile-resume {
         grid-column: span 2;
-        grid-row: span 1;
-        aspect-ratio: 2 / 1;
-    }
-
-    .tile-featured-title {
-        font-size: 24px;
-    }
-
-    .tile-contact-info h3 {
-        font-size: 12px;
-    }
-}
-
-/* Small mobile: 1 column */
-@media (max-width: 480px) {
-    .tile-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .tile-featured,
-    .tile-resume {
-        grid-column: span 1;
+        grid-row: span 2;
         aspect-ratio: 1 / 1;
     }
 
-    .tile-contact .tile-body {
+    .tile-featured-title {
+        font-size: 20px;
+    }
+
+    .tile-body {
+        padding: 12px;
+    }
+
+    .tile-text-bar {
+        padding: 10px;
+        margin: 0 -12px -12px;
+        width: calc(100% + 24px);
+    }
+
+    .mini-nav {
+        gap: 8px;
         flex-wrap: wrap;
+        margin-bottom: 12px;
+    }
+
+    .mini-tab {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .tile-label {
+        font-size: 10px;
+        margin-bottom: 6px;
+    }
+
+    .tile h3 {
+        font-size: 13px;
+    }
+
+    .tile-detail {
+        font-size: 11px;
+    }
+
+    .tile-contact-info h3 {
+        font-size: 11px;
+    }
+
+    .tile-contact .tile-body {
+        padding: 12px;
+    }
+
+    .avatar-name {
+        font-size: 18px;
+    }
+
+    .music-player {
+        bottom: 12px;
+        right: 12px;
+    }
+
+    .music-toggle {
+        width: 36px;
+        height: 36px;
+        font-size: 15px;
+    }
+}
+
+/* Small mobile: same 2 columns, tighter */
+@media (max-width: 480px) {
+    .content {
+        padding: 6px;
+        min-height: 100vh;
+    }
+
+    .tab-content.active {
+        height: auto;
+        overflow: visible;
+    }
+
+    .tile-grid {
+        gap: 4px;
+    }
+
+    .tile-body {
+        padding: 8px;
+    }
+
+    .tile-text-bar {
+        padding: 6px;
+        margin: 0 -8px -8px;
+        width: calc(100% + 16px);
+    }
+
+    .tile-featured-title {
+        font-size: 16px;
+    }
+
+    .tile-label {
+        font-size: 8px;
+        margin-bottom: 4px;
+    }
+
+    .tile h3 {
+        font-size: 11px;
+    }
+
+    .tile-detail {
+        font-size: 10px;
+    }
+
+    .tile-contact h3 {
+        font-size: 10px;
+    }
+
+    .avatar-name {
+        font-size: 15px;
+    }
+
+    .mini-tab {
+        font-size: 10px;
+    }
+
+    .resume-screen {
+        padding: 8px;
+    }
+
+    .resume-header h1 {
+        font-size: 16px;
     }
 }

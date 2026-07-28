@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const content = document.getElementById('mainContent');
 
     function fitToScreen() {
+        if (window.innerWidth < 700) {
+            scaleWrap.style.transform = '';
+            scaleWrap.style.width = '';
+            scaleWrap.style.height = '';
+            scaleWrap.style.left = '';
+            return;
+        }
         const baseW = 1366;
         const baseH = 768;
         const scaleX = window.innerWidth / baseW;
