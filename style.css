@@ -812,6 +812,7 @@ body {
 @media (max-width: 900px) {
     .tile-grid {
         grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: unset;
         max-width: 100%;
     }
 
@@ -819,6 +820,7 @@ body {
     .tile-resume {
         grid-column: span 2;
         grid-row: span 2;
+        aspect-ratio: 1 / 1;
     }
 }
 
@@ -837,8 +839,13 @@ body {
 
     .tile-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 6px;
+        grid-template-rows: unset;
+        gap: 0;
         max-width: 100%;
+    }
+
+    .tile {
+        margin: 3px;
     }
 
     .tile-featured,
@@ -846,6 +853,26 @@ body {
         grid-column: span 2;
         grid-row: span 2;
         aspect-ratio: 1 / 1;
+    }
+
+    .tile-avatar {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .tile-social {
+        grid-column: 1;
+        grid-row: 4;
+    }
+
+    .tile-nav[data-tab="projects"] {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .tile-placeholder {
+        grid-column: 2;
+        grid-row: 4;
     }
 
     .tile-featured-title {
@@ -923,7 +950,12 @@ body {
     }
 
     .tile-grid {
-        gap: 4px;
+        grid-template-rows: unset;
+        gap: 0;
+    }
+
+    .tile {
+        margin: 2px;
     }
 
     .tile-body {
