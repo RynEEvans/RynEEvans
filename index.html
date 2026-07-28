@@ -13,7 +13,8 @@
     <!-- Each section below is a tab page.            -->
     <!-- Toggle "active" class to show a tab.         -->
     <!-- ============================================ -->
-    <main class="content">
+    <div class="scale-wrap" id="scaleWrap">
+    <main class="content" id="mainContent">
 
         <!-- Mini tab navigation -->
         <nav class="mini-nav">
@@ -147,7 +148,9 @@
                 </div>
 
                 <!-- STANDARD TILE (1x1) — Interests -->
-                <div class="tile tile-nav" data-tab="interests">
+                <div class="tile tile-nav tile-interest-about" data-tab="interests">
+                    <div class="tile-interest-about-bg"></div>
+                    <div class="tile-avatar-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
                             <div class="tile-label">Interests</div>
@@ -423,64 +426,70 @@
         <!-- Interest categories                     -->
         <!-- ======================================== -->
         <section class="tab-content" id="tab-interests">
-            <div class="interests-screen">
+            <div class="interests-wrap">
+                <div class="tile-grid">
 
-                <div class="interests-grid">
-
-                    <!-- Vertical tile (1x2) — Band picture -->
-                    <div class="tile tile-interest-img">
-                        <div class="tile-interest-img-bg"></div>
-                        <div class="tile-avatar-overlay"></div>
-                        <div class="tile-body tile-avatar-body">
+                    <!-- FEATURED TILE (2x2) — Reactive image -->
+                    <div class="tile tile-featured tile-interest-reactive">
+                        <div class="tile-interest-reactive-bg"></div>
+                        <div class="tile-featured-overlay"></div>
+                        <div class="tile-body">
                             <div class="tile-text-bar">
                                 <div class="tile-label">My Interests</div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="interests-right">
-                        <!-- Horizontal tile (2x1) — Video Games -->
-                        <div class="tile tile-interest-btn">
-                            <div class="tile-interest-bg" style="background-image: url('images/game2.png')"></div>
-                            <div class="tile-avatar-overlay"></div>
-                            <div class="tile-body">
-                                <div class="tile-text-bar">
-                                    <h3>Video Games</h3>
-                                </div>
+                    <!-- TILE (1x1) — Video Games -->
+                    <div class="tile tile-interest-hover" data-interest="Video Games">
+                        <div class="tile-interest-bg" style="background-image: url('images/game2.png')"></div>
+                        <div class="tile-avatar-overlay"></div>
+                        <div class="tile-body">
+                            <div class="tile-text-bar">                                
+                                <h3>Video Games</h3>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Horizontal tile (2x1) — Music -->
-                        <div class="tile tile-interest-btn">
-                            <div class="tile-interest-bg" style="background-image: url('images/band2.png')"></div>
-                            <div class="tile-avatar-overlay"></div>
-                            <div class="tile-body">
-                                <div class="tile-text-bar">
-                                    <h3>Music</h3>
-                                </div>
+                    <!-- TILE (1x1) — Music -->
+                    <div class="tile tile-interest-hover" data-interest="Music">
+                        <div class="tile-interest-bg" style="background-image: url('images/band2.png')"></div>
+                        <div class="tile-avatar-overlay"></div>
+                        <div class="tile-body">
+                            <div class="tile-text-bar">                                
+                                <h3>Music</h3>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Horizontal tile (2x1) — Books & Comics -->
-                        <div class="tile tile-interest-btn">
-                            <div class="tile-interest-bg" style="background-image: url('images/book2.png')"></div>
-                            <div class="tile-avatar-overlay"></div>
-                            <div class="tile-body">
-                                <div class="tile-text-bar">
-                                    <h3>Books &amp; Comics</h3>
-                                </div>
+                    <!-- TILE (1x1) — Books & Comics -->
+                    <div class="tile tile-interest-hover" data-interest="Books & Comics">
+                        <div class="tile-interest-bg" style="background-image: url('images/book2.png')"></div>
+                        <div class="tile-avatar-overlay"></div>
+                        <div class="tile-body">
+                            <div class="tile-text-bar">
+                                <h3>Books &amp; Comics</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TILE (1x1) — Back -->
+                    <div class="tile tile-nav tile-back" data-tab="about">
+                        <div class="tile-back-bg"></div>
+                        <div class="tile-avatar-overlay"></div>
+                        <div class="tile-body">
+                            <div class="tile-text-bar">
+                                <div class="tile-label">Back</div>
                             </div>
                         </div>
                     </div>
 
                 </div>
-
-                <button class="resume-back" data-tab="about">&#8592; Back to About</button>
-
             </div>
         </section>
 
     </main>
+    </div>
 
     <script src="script.js"></script>
 

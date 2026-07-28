@@ -31,11 +31,19 @@ body {
     color: var(--text-primary);
 }
 
+.scale-wrap {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform-origin: top center;
+}
+
 /* ============================================ */
 /* CONTENT AREA                                 */
 /* ============================================ */
 .content {
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     overflow-y: auto;
     padding: 40px 24px;
     scrollbar-width: thin;
@@ -95,6 +103,8 @@ body {
 
 .tab-content.active {
     display: block;
+    height: 100%;
+    overflow: hidden;
 }
 
 @keyframes slideInRight {
@@ -552,60 +562,11 @@ body {
 }
 
 /* ============================================ */
-/* INTERESTS SCREEN                             */
-/* Vertical tile + 3 horizontal tiles           */
+/* INTERESTS: 4x3 grid layout                   */
 /* ============================================ */
-.interests-screen {
+.interests-wrap {
     max-width: 700px;
     margin: 0 auto;
-}
-
-.interests-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    grid-template-rows: 1fr 1fr;
-    gap: var(--tile-gap);
-    height: calc(100vh - 160px);
-}
-
-/* Vertical tile (1x1) — left side, 2 rows */
-.tile-interest-img {
-    grid-column: 1;
-    grid-row: 1 / 3;
-    aspect-ratio: auto;
-}
-
-.tile-interest-img-bg {
-    position: absolute;
-    inset: 0;
-    background-image: url('images/band1.png');
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.4s ease;
-}
-
-.tile:hover .tile-interest-img-bg {
-    transform: scale(1.04);
-}
-
-/* Horizontal tiles (2x1) — right side, stacked */
-.tile-interest-btn {
-    grid-column: 2;
-    aspect-ratio: auto;
-    cursor: pointer;
-}
-
-.interests-right {
-    display: flex;
-    flex-direction: column;
-    gap: var(--tile-gap);
-    grid-column: 2;
-    grid-row: 1 / 3;
-}
-
-.interests-right .tile-interest-btn {
-    flex: 1;
-    grid-column: auto;
 }
 
 .tile-interest-bg {
@@ -617,6 +578,45 @@ body {
 }
 
 .tile:hover .tile-interest-bg {
+    transform: scale(1.04);
+}
+
+.tile-interest-reactive-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/game1.png');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-interest-reactive-bg {
+    transform: scale(1.04);
+}
+
+.tile-back-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/back_arrow.png');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-back-bg {
+    transform: scale(1.04);
+}
+
+.tile-interest-about-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/interest.png');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-interest-about-bg {
     transform: scale(1.04);
 }
 
@@ -674,6 +674,8 @@ body {
     background: rgba(0, 0, 0, 0.7);
     border-radius: 4px;
     padding-bottom: 40px;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .resume-back {
@@ -685,6 +687,7 @@ body {
     cursor: pointer;
     padding: 0;
     margin-bottom: 24px;
+    margin-top: 8px;
     transition: color var(--transition-speed) ease;
 }
 
@@ -811,7 +814,8 @@ body {
         padding: 12px;
     }
 
-    .tile-grid {
+    .tile-grid,
+    .tile-grid-alt {
         grid-template-columns: repeat(2, 1fr);
     }
 

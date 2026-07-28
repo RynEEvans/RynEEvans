@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const scaleWrap = document.getElementById('scaleWrap');
+    const content = document.getElementById('mainContent');
+
+    function fitToScreen() {
+        const baseW = 1366;
+        const baseH = 768;
+        const scaleX = window.innerWidth / baseW;
+        const scaleY = window.innerHeight / baseH;
+        const scale = Math.min(scaleX, scaleY) * 1.3;
+        scaleWrap.style.transform = `translateX(-50%) scale(${scale})`;
+        scaleWrap.style.width = `${baseW}px`;
+        scaleWrap.style.height = `${baseH}px`;
+    }
+
+    fitToScreen();
+    window.addEventListener('resize', fitToScreen);
+
     const tabs = document.querySelectorAll('.mini-tab');
     const tabContents = document.querySelectorAll('.tab-content');
     const navTiles = document.querySelectorAll('.tile-nav');
@@ -44,17 +61,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    const interestImg = document.querySelector('.tile-interest-img-bg');
-    const interestBtns = document.querySelectorAll('.tile-interest-btn');
+    const interestReactiveBg = document.querySelector('.tile-interest-reactive-bg');
+    const interestHoverTiles = document.querySelectorAll('.tile-interest-hover');
     const interestImages = {
         'Video Games': 'images/game1.png',
         'Music': 'images/band1.png',
         'Books & Comics': 'images/book1.png'
     };
 
-    if (interestImg) {
-        interestImg.style.backgroundImage = "url('images/game1.png')";
+    if (interestReactiveBg) {
+        interestReactiveBg.style.backgroundImage = "url('images/game1.png')";
     }
+
+    interestHoverTiles.forEach(btn => {
+        btn.addEventListener('mouseenter', () => {
+            const key = btn.dataset.interest;
+            if (interestImages[key] && interestReactiveBg) {
+                interestReactiveBg.style.backgroundImage = `url('${interestImages[key]}')`;
+            }
+        });
+    });
 
     const musicToggle = document.getElementById('musicToggle');
     const bgMusic = document.getElementById('bgMusic');
