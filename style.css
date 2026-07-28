@@ -1,0 +1,849 @@
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&display=swap');
+
+:root {
+    --xbox-green: #2a5298;
+    --bg-dark: #0d1b2a;
+    --bg-tile: #1b2a3d;
+    --bg-tile-hover: #243647;
+    --text-primary: #ffffff;
+    --text-secondary: #999999;
+    --text-dim: #666666;
+    --tile-gap: 6px;
+    --tile-radius: 2px;
+    --transition-speed: 0.2s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(180deg, #000000 0%, #b0b0b0 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
+}
+
+/* ============================================ */
+/* CONTENT AREA                                 */
+/* ============================================ */
+.content {
+    height: 100vh;
+    overflow-y: auto;
+    padding: 40px 24px;
+    scrollbar-width: thin;
+    scrollbar-color: #444 transparent;
+}
+
+.content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 3px;
+}
+
+/* ============================================ */
+/* MINI TAB NAV                                 */
+/* Compact nav inside content area              */
+/* ============================================ */
+.mini-nav {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.mini-tab {
+    background: none;
+    border: none;
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 4px 0;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+}
+
+.mini-tab:hover {
+    color: var(--text-primary);
+}
+
+.mini-tab.active {
+    color: var(--xbox-green);
+    font-weight: 600;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(60px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-60px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.tab-content.slide-right {
+    animation: slideInRight 0.3s ease-out;
+}
+
+.tab-content.slide-left {
+    animation: slideInLeft 0.3s ease-out;
+}
+
+/* ============================================ */
+/* TILE GRID                                    */
+/* ============================================ */
+.tile-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: var(--tile-gap);
+    max-width: 700px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+/* ============================================ */
+/* TILE: SPACER (1x1) — Used for centering       */
+/* ============================================ */
+.tile-spacer {
+    background: transparent;
+    border: none;
+    pointer-events: none;
+}
+
+.tile-spacer:hover {
+    transform: none;
+    border-color: transparent;
+    box-shadow: none;
+    background: transparent;
+}
+
+/* ============================================ */
+/* BASE TILE STYLES                             */
+/* ============================================ */
+.tile {
+    background: linear-gradient(0deg, #0a1520 0%, var(--bg-tile) 100%);
+    border: 1px solid transparent;
+    border-radius: var(--tile-radius);
+    aspect-ratio: 1 / 1;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition:
+        transform var(--transition-speed) ease,
+        border-color var(--transition-speed) ease,
+        box-shadow var(--transition-speed) ease,
+        background var(--transition-speed) ease;
+}
+
+.tile:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+    background: linear-gradient(0deg, #0f1e2c 0%, var(--bg-tile-hover) 100%);
+}
+
+.tile-body {
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    z-index: 2;
+}
+
+/* ============================================ */
+/* TILE TEXT BAR                                */
+/* Gray opacity bar behind text content         */
+/* ============================================ */
+.tile-text-bar {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 16px;
+    margin: 0 -20px -20px;
+    width: calc(100% + 40px);
+}
+
+/* ============================================ */
+/* TILE: FEATURED (2x2) — Home & Projects       */
+/* Main highlight tile with background image    */
+/* ============================================ */
+.tile-featured {
+    grid-column: span 2;
+    grid-row: span 2;
+    aspect-ratio: 1 / 1;
+}
+
+/* Featured Tile: Background Image */
+/* TO USE: Replace the URL with your image, e.g. url('images/my-photo.jpg') */
+.tile-featured-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/featured.png');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-featured-bg {
+    transform: scale(1.04);
+}
+
+/* Featured Tile: Dark overlay for text readability */
+.tile-featured-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.75) 100%);
+    pointer-events: none;
+}
+
+/* Featured Tile: Text styles */
+.tile-featured-title {
+    font-size: 32px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.tile-featured-sub {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.tile-featured-detail {
+    font-size: 13px;
+    color: var(--text-dim);
+}
+
+/* ============================================ */
+/* TILE: AVATAR (1x1) — Home tab                */
+/* Profile picture, gamertag, and online status */
+/* ============================================ */
+.tile-avatar {
+    cursor: pointer;
+}
+
+/* Avatar Tile: Body alignment — bottom left */
+.tile-avatar-body {
+    align-items: flex-start;
+    justify-content: flex-end;
+    text-align: left;
+}
+
+/* Avatar Tile: Background Image */
+/* TO USE: Replace the URL with your image, e.g. url('images/avatar.jpg') */
+.tile-avatar-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/pfp.png');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-avatar-bg {
+    transform: scale(1.04);
+}
+
+/* Avatar Tile: Dark overlay for text readability */
+.tile-avatar-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+    pointer-events: none;
+}
+
+/* Avatar Tile: Disc image in top right */
+.tile-avatar-disc {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    z-index: 3;
+}
+
+.tile-avatar-disc img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Avatar Tile: Name text at bottom (matches featured title style) */
+.avatar-name {
+    font-size: 24px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+    margin-top: auto;
+}
+
+/* Avatar Tile: Online status indicator */
+.avatar-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-dim);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--xbox-green);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+/* ============================================ */
+/* TILE: SOCIAL (1x1) — Home tab                */
+/* Link to social media profiles                */
+/* ============================================ */
+.tile-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+}
+
+.tile h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.tile-detail {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    line-height: 1.5;
+}
+
+.tile-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--xbox-green);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color var(--transition-speed) ease;
+}
+
+.tile-link:hover {
+    color: #3a6bc5;
+}
+
+.tile-icon {
+    font-size: 32px;
+    color: var(--text-dim);
+    margin-top: auto;
+}
+
+/* ============================================ */
+/* TILES: NAV (1x1) — Home tab                  */
+/* Quick links to About, Projects, Contact      */
+/* ============================================ */
+.tile-nav {
+    cursor: pointer;
+}
+
+.tile-nav .tile-body {
+    justify-content: flex-end;
+}
+
+/* ============================================ */
+/* TILE: AD/INFO (1x1) — Home tab               */
+/* Currently learning info                      */
+/* ============================================ */
+.tile-ad .tile-body {
+    justify-content: flex-end;
+}
+
+.tile-ad-tags {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+/* ============================================ */
+/* TAGS                                         */
+/* Used across About and Projects tabs          */
+/* ============================================ */
+.tag {
+    display: inline-block;
+    background: rgba(42, 82, 152, 0.15);
+    color: var(--xbox-green);
+    padding: 5px 12px;
+    border-radius: 2px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid rgba(42, 82, 152, 0.2);
+    transition: all var(--transition-speed) ease;
+}
+
+.tile:hover .tag {
+    background: rgba(42, 82, 152, 0.25);
+    border-color: rgba(42, 82, 152, 0.4);
+}
+
+.tag.small {
+    padding: 3px 8px;
+    font-size: 11px;
+}
+
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 10px;
+}
+
+/* ============================================ */
+/* TILE: PROJECT (1x1 & 2x2) — Projects tab     */
+/* Individual project cards                     */
+/* ============================================ */
+.project-tags {
+    display: flex;
+    gap: 6px;
+    margin-top: 12px;
+}
+
+/* ============================================ */
+/* TILE: MORE PROJECTS (1x1) — Projects tab     */
+/* Link to GitHub for more projects             */
+/* ============================================ */
+.tile-more-projects {
+    cursor: pointer;
+}
+
+.tile-more-projects .tile-body {
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+}
+
+/* ============================================ */
+/* TILES: CONTACT (1x1) — Contact tab           */
+/* Email, LinkedIn, GitHub links                */
+/* ============================================ */
+.tile-contact {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.tile-contact .tile-body {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 20px;
+    justify-content: flex-end;
+    text-align: center;
+}
+
+.tile-contact-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 50%;
+    background: rgba(42, 82, 152, 0.15);
+    color: var(--xbox-green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.tile-contact-info {
+    min-width: 0;
+}
+
+.tile-contact-info h3 {
+    font-size: 12px;
+    font-weight: 400;
+    word-break: break-all;
+    line-height: 1.4;
+}
+
+.tile-contact-arrow {
+    display: none;
+}
+
+/* ============================================ */
+/* TILE: RESUME (2x2) — About tab               */
+/* Background image tile linking to resume screen*/
+/* ============================================ */
+.tile-resume {
+    grid-column: span 2;
+    grid-row: span 2;
+    cursor: pointer;
+}
+
+/* Resume Tile: Background Image */
+.tile-resume-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/resume.png');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-resume-bg {
+    transform: scale(1.04);
+}
+
+/* ============================================ */
+/* TILE: TWIN (1x1) — About tab                 */
+/* Background image for twin fun fact           */
+/* ============================================ */
+.tile-twin {
+    text-decoration: none;
+    color: inherit;
+}
+
+.tile-twin-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/twin.png');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-twin-bg {
+    transform: scale(1.04);
+}
+
+/* ============================================ */
+/* INTERESTS SCREEN                             */
+/* Vertical tile + 3 horizontal tiles           */
+/* ============================================ */
+.interests-screen {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr 1fr;
+    gap: var(--tile-gap);
+    height: calc(100vh - 160px);
+}
+
+/* Vertical tile (1x1) — left side, 2 rows */
+.tile-interest-img {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    aspect-ratio: auto;
+}
+
+.tile-interest-img-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/band1.png');
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-interest-img-bg {
+    transform: scale(1.04);
+}
+
+/* Horizontal tiles (2x1) — right side, stacked */
+.tile-interest-btn {
+    grid-column: 2;
+    aspect-ratio: auto;
+    cursor: pointer;
+}
+
+.interests-right {
+    display: flex;
+    flex-direction: column;
+    gap: var(--tile-gap);
+    grid-column: 2;
+    grid-row: 1 / 3;
+}
+
+.interests-right .tile-interest-btn {
+    flex: 1;
+    grid-column: auto;
+}
+
+.tile-interest-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-interest-bg {
+    transform: scale(1.04);
+}
+
+/* ============================================ */
+/* MUSIC PLAYER                                 */
+/* Bottom right corner toggle                   */
+/* ============================================ */
+.music-player {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.music-toggle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(42, 82, 152, 0.4);
+    background: rgba(0, 0, 0, 0.6);
+    color: var(--text-secondary);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-toggle:hover {
+    color: var(--text-primary);
+    border-color: var(--xbox-green);
+    background: rgba(42, 82, 152, 0.2);
+}
+
+.music-toggle.playing {
+    color: var(--xbox-green);
+    border-color: var(--xbox-green);
+    animation: musicPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes musicPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(42, 82, 152, 0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(42, 82, 152, 0); }
+}
+
+/* ============================================ */
+/* RESUME SCREEN                                */
+/* Full resume content page                     */
+/* ============================================ */
+.resume-screen {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 32px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 4px;
+    padding-bottom: 40px;
+}
+
+.resume-back {
+    background: none;
+    border: none;
+    color: var(--xbox-green);
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 24px;
+    transition: color var(--transition-speed) ease;
+}
+
+.resume-back:hover {
+    color: #6db8ff;
+}
+
+.resume-header {
+    margin-bottom: 32px;
+}
+
+.resume-header h1 {
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.resume-header p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.resume-header a {
+    color: var(--xbox-green);
+    text-decoration: none;
+    transition: color var(--transition-speed) ease;
+}
+
+.resume-header a:hover {
+    color: #6db8ff;
+}
+
+.resume-section {
+    margin-bottom: 28px;
+}
+
+.resume-section h2 {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--xbox-green);
+    border-bottom: 1px solid rgba(42, 82, 152, 0.3);
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+}
+
+.resume-item {
+    margin-bottom: 20px;
+}
+
+.resume-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 6px;
+}
+
+.resume-item-header h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.resume-date {
+    font-size: 12px;
+    color: var(--text-dim);
+    white-space: nowrap;
+}
+
+.resume-item p {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.resume-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 6px 0 0;
+}
+
+.resume-item li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+}
+
+.resume-item li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--xbox-green);
+}
+
+/* ============================================ */
+/* RESPONSIVE                                   */
+/* ============================================ */
+
+/* Tablet: 3 columns */
+@media (max-width: 900px) {
+    .tile-grid {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 100%;
+    }
+
+    .tile-featured,
+    .tile-resume {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
+}
+
+/* Mobile: 2 columns, featured becomes wide */
+@media (max-width: 700px) {
+    .content {
+        padding: 12px;
+    }
+
+    .tile-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tile-featured,
+    .tile-resume {
+        grid-column: span 2;
+        grid-row: span 1;
+        aspect-ratio: 2 / 1;
+    }
+
+    .tile-featured-title {
+        font-size: 24px;
+    }
+
+    .tile-contact-info h3 {
+        font-size: 12px;
+    }
+}
+
+/* Small mobile: 1 column */
+@media (max-width: 480px) {
+    .tile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tile-featured,
+    .tile-resume {
+        grid-column: span 1;
+        aspect-ratio: 1 / 1;
+    }
+
+    .tile-contact .tile-body {
+        flex-wrap: wrap;
+    }
+}

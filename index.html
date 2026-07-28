@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RynEEvans | Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ============================================ -->
+    <!-- MAIN CONTENT                                 -->
+    <!-- Each section below is a tab page.            -->
+    <!-- Toggle "active" class to show a tab.         -->
+    <!-- ============================================ -->
+    <main class="content">
+
+        <!-- Mini tab navigation -->
+        <nav class="mini-nav">
+            <button class="mini-tab active" data-tab="home">Home</button>
+            <button class="mini-tab" data-tab="about">About</button>
+            <button class="mini-tab" data-tab="projects">Projects</button>
+            <button class="mini-tab" data-tab="contact">Contact</button>
+        </nav>
+
+        <!-- ======================================== -->
+        <!-- TAB: HOME                                -->
+        <!-- Main landing page with featured info     -->
+        <!-- ======================================== -->
+        <section class="tab-content active" id="tab-home">
+            <div class="tile-grid">
+
+                <!-- AVATAR TILE (1x1) — Top left -->
+                <!-- To add a background image, replace the URL in style.css: .tile-avatar-bg { background-image: url(...) } -->
+                <div class="tile tile-avatar tile-nav" data-tab="about">
+                    <div class="tile-avatar-bg"></div>
+                    <div class="tile-avatar-overlay"></div>
+                    <div class="tile-avatar-disc">
+                        <img src="images/disc.png" alt="Disc">
+                    </div>
+                    <div class="tile-body tile-avatar-body">
+                        <div class="tile-text-bar">
+                            <div class="avatar-name">Ryan Evans</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FEATURED TILE (2x2) — Center -->
+                <!-- To add a background image, replace the URL in style.css: .tile-featured-bg { background-image: url(...) } -->
+                <div class="tile tile-featured">
+                    <div class="tile-featured-bg"></div>
+                    <div class="tile-featured-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <h1 class="tile-featured-title">This Website!</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOCIAL TILE (1x1) — Top right -->
+                <div class="tile tile-social">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Social</div>
+                            <div class="tile-icon">&#8599;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NAV TILE (1x1) — Bottom left, links to Projects tab -->
+                <div class="tile tile-nav" data-tab="projects">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Projects</div>
+                            <div class="tile-icon">&#9881;</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PLACEHOLDER TILE (1x1) — Bottom right -->
+                <div class="tile tile-placeholder">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Coming Soon</div>
+                            <div class="tile-icon">&#8943;</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- TAB: ABOUT                               -->
+        <!-- Education, skills, and personal info     -->
+        <!-- ======================================== -->
+        <section class="tab-content" id="tab-about">
+            <div class="tile-grid">
+
+                <!-- TILE (2x2) — Resume -->
+                <div class="tile tile-resume tile-nav" data-tab="resume">
+                    <div class="tile-resume-bg"></div>
+                    <div class="tile-featured-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Resume</div>
+                            <h3>View Full Resume</h3>
+                            <p class="tile-detail">Experience, Education & Projects</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STANDARD TILE (1x1) — Pronouns -->
+                <div class="tile">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Pronouns</div>
+                            <h3>he/him</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STANDARD TILE (1x1) — Fun fact -->
+                <a href="https://github.com/JalenEvans" class="tile tile-twin" target="_blank">
+                    <div class="tile-twin-bg"></div>
+                    <div class="tile-avatar-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Fun Fact</div>
+                            <h3>I have a twin!</h3>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- STANDARD TILE (1x1) — Currently learning -->
+                <div class="tile">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Currently Learning</div>
+                            <div class="skill-tags">
+                                <span class="tag">Blender</span>
+                                <span class="tag">Godot</span>
+                                <span class="tag">Unreal Engine</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STANDARD TILE (1x1) — Interests -->
+                <div class="tile tile-nav" data-tab="interests">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Interests</div>
+                            <h3>Video Games</h3>
+                            <p class="tile-detail">Ask me about them!</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- TAB: PROJECTS                            -->
+        <!-- Portfolio project tiles                  -->
+        <!-- ======================================== -->
+        <section class="tab-content" id="tab-projects">
+            <div class="tile-grid">
+
+                <!-- FEATURED TILE (2x2) — Main/featured project -->
+                <div class="tile tile-featured tile-project">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Featured Project</div>
+                            <h3>Project One</h3>
+                            <p class="tile-detail">A cool project description goes here. Built with C++ and Unreal Engine.</p>
+                            <div class="project-tags">
+                                <span class="tag small">C++</span>
+                                <span class="tag small">Unreal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STANDARD TILE (1x1) — Project #2 -->
+                <div class="tile tile-project">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Project</div>
+                            <h3>Project Two</h3>
+                            <p class="tile-detail">Another awesome project. Made with Unity and C#.</p>
+                            <div class="project-tags">
+                                <span class="tag small">C#</span>
+                                <span class="tag small">Unity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STANDARD TILE (1x1) — Project #3 -->
+                <div class="tile tile-project">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Project</div>
+                            <h3>Project Three</h3>
+                            <p class="tile-detail">Third project. Developed using Godot Engine.</p>
+                            <div class="project-tags">
+                                <span class="tag small">Godot</span>
+                                <span class="tag small">GDScript</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TILE (1x1) — More projects / GitHub link -->
+                <div class="tile tile-more-projects">
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">More Projects</div>
+                            <p class="tile-detail">More coming soon. Check my GitHub for updates.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- TAB: CONTACT                             -->
+        <!-- Email, LinkedIn, GitHub links            -->
+        <!-- ======================================== -->
+        <section class="tab-content" id="tab-contact">
+            <div class="tile-grid">
+
+                <!-- TILE (1x1) — Personal email -->
+                <a href="mailto:ry.e.evans123@gmail.com" class="tile tile-contact" target="_blank">
+                    <div class="tile-body">
+                        <div class="tile-contact-icon">&#9993;</div>
+                        <div class="tile-contact-info">
+                            <div class="tile-label">Email</div>
+                            <h3>ry.e.evans123@gmail.com</h3>
+                        </div>
+                        <div class="tile-contact-arrow">&rsaquo;</div>
+                    </div>
+                </a>
+
+                <!-- TILE (1x1) — School email -->
+                <a href="mailto:ryanee@email.sc.edu" class="tile tile-contact" target="_blank">
+                    <div class="tile-body">
+                        <div class="tile-contact-icon">&#9993;</div>
+                        <div class="tile-contact-info">
+                            <div class="tile-label">School Email</div>
+                            <h3>ryanee@email.sc.edu</h3>
+                        </div>
+                        <div class="tile-contact-arrow">&rsaquo;</div>
+                    </div>
+                </a>
+
+                <!-- TILE (1x1) — LinkedIn -->
+                <a href="https://linkedin.com/in/ryan-evans-981426249" class="tile tile-contact" target="_blank">
+                    <div class="tile-body">
+                        <div class="tile-contact-icon">in</div>
+                        <div class="tile-contact-info">
+                            <div class="tile-label">LinkedIn</div>
+                            <h3>linkedin.com/in/ryan-evans-981426249</h3>
+                        </div>
+                        <div class="tile-contact-arrow">&rsaquo;</div>
+                    </div>
+                </a>
+
+                <!-- TILE (1x1) — GitHub -->
+                <a href="https://github.com/RynEEvans" class="tile tile-contact" target="_blank">
+                    <div class="tile-body">
+                        <div class="tile-contact-icon">G</div>
+                        <div class="tile-contact-info">
+                            <div class="tile-label">GitHub</div>
+                            <h3>github.com/RynEEvans</h3>
+                        </div>
+                        <div class="tile-contact-arrow">&rsaquo;</div>
+                    </div>
+                </a>
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- TAB: RESUME                              -->
+        <!-- Full resume content from PDFs            -->
+        <!-- ======================================== -->
+        <section class="tab-content" id="tab-resume">
+            <div class="resume-screen">
+
+                <button class="resume-back" data-tab="about">&#8592; Back to About</button>
+
+                <div class="resume-header">
+                    <h1>Ryan Evans</h1>
+                    <p>ry.e.evans123@gmail.com / ryanee@email.sc.edu</p>
+                    <p><a href="https://linktr.ee/ryaneevans" target="_blank">linktr.ee/ryaneevans</a></p>
+                </div>
+
+                <div class="resume-section">
+                    <h2>Education</h2>
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h3>University of South Carolina</h3>
+                            <span class="resume-date">August 2022 &ndash; Present</span>
+                        </div>
+                        <p>Undergraduate &mdash; Computer Science Major</p>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h2>Experience</h2>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h3>Taco Bell &mdash; Shift Lead Manager</h3>
+                            <span class="resume-date">Summers of 2025 &amp; 2026</span>
+                        </div>
+                        <ul>
+                            <li>Provide an efficient and delight experience for customers</li>
+                            <li>Serving food while maintaining cleanliness and stock</li>
+                            <li>Keep track of inventory throughout the day</li>
+                            <li>Studied and received my ServSafe Certificate</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h3>Aramark &mdash; Food Service Worker</h3>
+                            <span class="resume-date">August 2022 &ndash; 2026</span>
+                        </div>
+                        <ul>
+                            <li>Assist customers in checking out items</li>
+                            <li>Provide a friendly and quick experience</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h3>Lowe's Home Improvement</h3>
+                            <span class="resume-date">Summers of 2023 &amp; 2024</span>
+                        </div>
+                        <ul>
+                            <li>Outside Lawn and Garden Department / Lumber Department</li>
+                            <li>Memorize store items to assist customers</li>
+                            <li>Seek out customers to provide assistance</li>
+                            <li>Help put customer's items into their vehicle</li>
+                            <li>Used heavy machinery such as a Forklift, Reach Truck, or Electric Pallet Jack</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h3>Kappa Kappa Psi &mdash; Zeta Chi Chapter</h3>
+                            <span class="resume-date">Secretary &mdash; 2025</span>
+                        </div>
+                        <ul>
+                            <li>Marching Band Service Fraternity</li>
+                            <li>Elected onto the Executive Team as Secretary in 2025</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h2>Projects</h2>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h3>University Class Registration Software</h3>
+                        </div>
+                        <ul>
+                            <li>In a group of 6, used Azure Cloud Development and SQL to make software that allowed users to register for courses</li>
+                            <li>Used AI Foundry to make an AI assistant to help users build their perfect schedule</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h3>Godot Indie Game Development (AIS Charon)</h3>
+                        </div>
+                        <ul>
+                            <li>In a group of 3 developing a short Metroidvania, serving as the Game Designer</li>
+                            <li>Build the game in Godot using assets made by my team members</li>
+                            <li>Learning and applying knowledge of Game Development and the GDScript Language</li>
+                            <li>Originally released for Brackey's Game Jam in March as a game made in one week</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h3>Custom Music Making Software</h3>
+                        </div>
+                        <ul>
+                            <li>In a group of 4, designed a music making software where users could make short songs and play the notes using JavaFX</li>
+                        </ul>
+                    </div>
+
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                            <h3>Basic Design Patterns</h3>
+                        </div>
+                        <ul>
+                            <li>Coded the Beginner Design Patterns: Decorator, Iterator, Observer, Singleton, State, and Strategy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="resume-section">
+                    <h2>Certifications &amp; Skills</h2>
+                    <ul>
+                        <li>Forklift Operation (Through Lowe's Home Improvement)</li>
+                        <li>ServSafe Certification (7/17/25 &ndash; valid until 7/17/30)</li>
+                        <li>Capgemini Cloud Native Development</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- TAB: INTERESTS                          -->
+        <!-- Interest categories                     -->
+        <!-- ======================================== -->
+        <section class="tab-content" id="tab-interests">
+            <div class="interests-screen">
+
+                <div class="interests-grid">
+
+                    <!-- Vertical tile (1x2) — Band picture -->
+                    <div class="tile tile-interest-img">
+                        <div class="tile-interest-img-bg"></div>
+                        <div class="tile-avatar-overlay"></div>
+                        <div class="tile-body tile-avatar-body">
+                            <div class="tile-text-bar">
+                                <div class="tile-label">My Interests</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="interests-right">
+                        <!-- Horizontal tile (2x1) — Video Games -->
+                        <div class="tile tile-interest-btn">
+                            <div class="tile-interest-bg" style="background-image: url('images/game2.png')"></div>
+                            <div class="tile-avatar-overlay"></div>
+                            <div class="tile-body">
+                                <div class="tile-text-bar">
+                                    <h3>Video Games</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Horizontal tile (2x1) — Music -->
+                        <div class="tile tile-interest-btn">
+                            <div class="tile-interest-bg" style="background-image: url('images/band2.png')"></div>
+                            <div class="tile-avatar-overlay"></div>
+                            <div class="tile-body">
+                                <div class="tile-text-bar">
+                                    <h3>Music</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Horizontal tile (2x1) — Books & Comics -->
+                        <div class="tile tile-interest-btn">
+                            <div class="tile-interest-bg" style="background-image: url('images/book2.png')"></div>
+                            <div class="tile-avatar-overlay"></div>
+                            <div class="tile-body">
+                                <div class="tile-text-bar">
+                                    <h3>Books &amp; Comics</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button class="resume-back" data-tab="about">&#8592; Back to About</button>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+    <!-- Music Player -->
+    <div class="music-player">
+        <button class="music-toggle" id="musicToggle">&#9835;</button>
+        <audio id="bgMusic" loop>
+            <source src="music/background.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+</body>
+</html>
