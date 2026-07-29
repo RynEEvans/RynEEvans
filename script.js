@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroModalClose = document.getElementById('heroModalClose');
 
     const heroContent = {
-        'Hero%20Concepts/NightcrawlerMR.txt': `Creepy Crawler @ThCreepyCrawler
+        'Hero%20Concepts/NightcrawlerMR.txt': `
 
 Nightcrawler Character Concept I made (1/2)
 
@@ -262,7 +262,7 @@ Uncanny Spiderman design
 
 Thank you for reading!`,
 
-        'Hero%20Concepts/ProfXMR.txt': `Creepy Crawler @ThCreepyCrawler
+        'Hero%20Concepts/ProfXMR.txt': `
 
 Professor X Character Concept: Support/Strategist (1/?)
 
@@ -296,7 +296,7 @@ He gets slow fall with the chair
 
 Thank you for reading!!!`,
 
-        'Hero%20Concepts/AntManWaspMR.txt': `Creepy Crawler @ThCreepyCrawler
+        'Hero%20Concepts/AntManWaspMR.txt': `
 
 Ant-Man and the Wasp Character Concept: Art by ScottCohn on devianart
 
@@ -353,7 +353,7 @@ Ant-Man grows REALLY BIG and gets increased health and damage on melee while the
 
 If you read all that I'm legitimately surprised and thank you so much`,
 
-        'Hero%20Concepts/DaredevilMR.txt': `Creepy Crawler @ThCreepyCrawler
+        'Hero%20Concepts/DaredevilMR.txt': `
 
 Daredevil Character Concept: DPS/Duelist
 
@@ -382,11 +382,11 @@ Daredevil is a fan favorite and probably the hardest to balance while being fait
 
 As always thanks for reading`,
 
-        'Hero%20Concepts/GhostRiderMR.txt': `Creepy Crawler @ThCreepyCrawler
+        'Hero%20Concepts/GhostRiderMR.txt': `
 
 Ghost Rider Character Concept: DPS/Duelist`,
 
-        'Hero%20Concepts/GhostRiderVanguardMR.txt': `Creepy Crawler @ThCreepyCrawler
+        'Hero%20Concepts/GhostRiderVanguardMR.txt': `
 
 Ghost Rider Vanguard Concept: A Thread for @JETTyoutube
 
@@ -421,13 +421,13 @@ So basically if the enemy Hela is stomping and on a 10 killstreak without dying,
 
 Skins: All other Ghost Riders — Danny Ketch, Robbie Reyes, Alejandra Jones, and Charlie`,
 
-        'Hero%20Concepts/JuggernautMR.txt': `Creepy Crawler @ThCreepyCrawler
+        'Hero%20Concepts/JuggernautMR.txt': `
 
 The Juggernaut Character Concept: Tank/Vanguard
 
 A Thread`,
 
-        'Hero%20Concepts/MilesMoralesMR.txt': `Creepy Crawler @ThCreepyCrawler
+        'Hero%20Concepts/MilesMoralesMR.txt': `
 
 Miles Morales Character Concept: Support/Strategist
 
