@@ -81,6 +81,45 @@ body {
 /* MINI TAB NAV                                 */
 /* Compact nav inside content area              */
 /* ============================================ */
+
+.nav-arrow {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 100;
+    background: rgba(0, 0, 0, 0.3);
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 36px;
+    width: 40px;
+    height: 80px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease;
+    border-radius: 4px;
+}
+
+.nav-arrow:hover {
+    background: rgba(42, 82, 152, 0.6);
+    color: #fff;
+}
+
+.nav-arrow-left {
+    left: calc(50% - 470px);
+}
+
+.nav-arrow-right {
+    left: calc(50% + 430px);
+}
+
+@media (max-width: 700px) {
+    .nav-arrow {
+        display: none;
+    }
+}
+
 .mini-nav {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -312,6 +351,20 @@ body {
 }
 
 .tile:hover .tile-avatar-bg {
+    transform: scale(1.04);
+}
+
+.tile-social-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/social.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    transition: transform 0.4s ease;
+}
+
+.tile:hover .tile-social-bg {
     transform: scale(1.04);
 }
 
@@ -631,7 +684,8 @@ body {
     position: absolute;
     inset: 0;
     background-image: url('images/back_arrow.png');
-    background-size: cover;
+    background-size: 50%;
+    background-repeat: no-repeat;
     background-position: center;
     transition: transform 0.4s ease;
 }
@@ -1055,6 +1109,8 @@ body.easy-mode {
     --text-secondary: #444;
     --text-dim: #666;
     background: linear-gradient(180deg, #000000 0%, #b0b0b0 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
     color: #1a1a1a;
 }
 
@@ -1154,13 +1210,18 @@ body.easy-mode .tile .tile-back-bg,
 body.easy-mode .tile .tile-twin-bg,
 body.easy-mode .tile .tile-interest-bg,
 body.easy-mode .tile .tile-interest-reactive-bg,
+body.easy-mode .tile .tile-resume-bg,
+body.easy-mode .tile .tile-interest-about-bg,
 body.easy-mode .tile .tile-avatar-overlay,
 body.easy-mode .tile .tile-featured-overlay,
 body.easy-mode .tile .tile-avatar-disc,
 body.easy-mode .tile-featured-bg,
 body.easy-mode .tile-avatar-bg,
 body.easy-mode .tile-avatar-overlay,
-body.easy-mode .tile-featured-overlay {
+body.easy-mode .tile-featured-overlay,
+body.easy-mode .tile-resume-bg,
+body.easy-mode .tile-interest-about-bg,
+body.easy-mode .tile-social-bg {
     display: none;
 }
 
@@ -1266,8 +1327,8 @@ body.easy-mode .tile-spacer {
 }
 
 body.easy-mode .resume-screen {
-    background: transparent;
-    padding: 0;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 24px;
     height: auto;
     overflow: visible;
     max-width: 100%;

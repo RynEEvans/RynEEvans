@@ -16,6 +16,10 @@
     <div class="scale-wrap" id="scaleWrap">
     <main class="content" id="mainContent">
 
+        <!-- Side arrows -->
+        <button class="nav-arrow nav-arrow-left" id="navArrowLeft" aria-label="Previous tab">&#8249;</button>
+        <button class="nav-arrow nav-arrow-right" id="navArrowRight" aria-label="Next tab">&#8250;</button>
+
         <!-- Mini tab navigation -->
         <nav class="mini-nav">
             <span class="nav-title" id="navTitle">Home</span>
@@ -62,12 +66,13 @@
                     </div>
                 </div>
 
-                <!-- SOCIAL TILE (1x1) — Top right -->
-                <div class="tile tile-social">
+                <!-- CONTACT TILE (1x1) — Top right -->
+                <div class="tile tile-social tile-nav" data-tab="contact">
+                    <div class="tile-social-bg"></div>
+                    <div class="tile-avatar-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Social</div>
-                            <div class="tile-icon">&#8599;</div>
+                            <h3>Contact</h3>
                         </div>
                     </div>
                 </div>
@@ -76,8 +81,7 @@
                 <div class="tile tile-nav" data-tab="projects">
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Projects</div>
-                            <div class="tile-icon">&#9881;</div>
+                            <h3>Projects</h3>
                         </div>
                     </div>
                 </div>
@@ -86,8 +90,7 @@
                 <div class="tile tile-placeholder" id="easyModeBtn">
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Easy Mode</div>
-                            <div class="tile-icon">&#8635;</div>
+                            <h3>Easy Mode</h3>
                         </div>
                     </div>
                 </div>
@@ -230,7 +233,7 @@
                     <div class="tile-avatar-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Back</div>
+                            <h3>Back</h3>
                         </div>
                     </div>
                 </div>
@@ -244,30 +247,6 @@
         <!-- ======================================== -->
         <section class="tab-content" id="tab-contact">
             <div class="tile-grid">
-
-                <!-- TILE (1x1) — Personal email -->
-                <a href="mailto:ry.e.evans123@gmail.com" class="tile tile-contact" target="_blank">
-                    <div class="tile-body">
-                        <div class="tile-contact-icon">&#9993;</div>
-                        <div class="tile-contact-info">
-                            <div class="tile-label">Email</div>
-                            <h3>ry.e.evans123@gmail.com</h3>
-                        </div>
-                        <div class="tile-contact-arrow">&rsaquo;</div>
-                    </div>
-                </a>
-
-                <!-- TILE (1x1) — School email -->
-                <a href="mailto:ryanee@email.sc.edu" class="tile tile-contact" target="_blank">
-                    <div class="tile-body">
-                        <div class="tile-contact-icon">&#9993;</div>
-                        <div class="tile-contact-info">
-                            <div class="tile-label">School Email</div>
-                            <h3>ryanee@email.sc.edu</h3>
-                        </div>
-                        <div class="tile-contact-arrow">&rsaquo;</div>
-                    </div>
-                </a>
 
                 <!-- TILE (1x1) — LinkedIn -->
                 <a href="https://linkedin.com/in/ryan-evans-981426249" class="tile tile-contact" target="_blank">
@@ -487,7 +466,7 @@
                         <div class="tile-avatar-overlay"></div>
                         <div class="tile-body">
                             <div class="tile-text-bar">
-                                <div class="tile-label">Back</div>
+                                <h3>Back</h3>
                             </div>
                         </div>
                     </div>

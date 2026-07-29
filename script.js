@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         document.querySelector('.content').scrollTop = 0;
+
+        setTimeout(positionArrows, 50);
     }
 
     function goBack() {
@@ -158,4 +160,57 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.toggle('easy-mode');
         });
     }
+
+    function positionArrows() {
+        if (window.innerWidth < 700) {
+            if (navArrowLeft) navArrowLeft.style.top = '';
+            if (navArrowRight) navArrowRight.style.top = '';
+            return;
+        }
+        const activeTab = document.querySelector('.tab-content.active');
+        const activeId = activeTab ? activeTab.id.replace('tab-', '') : '';
+        if (activeId === 'resume' || activeId === 'interests') {
+            if (navArrowLeft) navArrowLeft.style.display = 'none';
+            if (navArrowRight) navArrowRight.style.display = 'none';
+            return;
+        }
+        if (navArrowLeft) navArrowLeft.style.display = '';
+        if (navArrowRight) navArrowRight.style.display = '';
+        const tileGrid = document.querySelector('.tab-content.active .tile-grid, .tab-content.active .resume-screen');
+        if (tileGrid) {
+            const rect = tileGrid.getBoundingClientRect();
+            const centerY = rect.top + rect.height / 2;
+            const arrowHeight = 80;
+            const topPx = centerY - arrowHeight / 2;
+            if (navArrowLeft) navArrowLeft.style.top = topPx + 'px';
+            if (navArrowRight) navArrowRight.style.top = topPx + 'px';
+        }
+    }
+
+    const navArrowLeft = document.getElementById('navArrowLeft');
+    const navArrowRight = document.getElementById('navArrowRight');
+
+    function adjacentTab(direction) {
+        const mainTabs = ['home', 'about', 'projects', 'contact'];
+        const currentTab = document.querySelector('.mini-tab.active');
+        const currentId = currentTab ? currentTab.dataset.tab : 'home';
+        const currentIndex = mainTabs.indexOf(currentId);
+        if (currentIndex === -1) {
+            switchTab(direction === 1 ? 'home' : 'contact', true);
+            return;
+        }
+        const nextIndex = (currentIndex + direction + mainTabs.length) % mainTabs.length;
+        switchTab(mainTabs[nextIndex]);
+    }
+
+    if (navArrowLeft) {
+        navArrowLeft.addEventListener('click', () => adjacentTab(-1));
+    }
+
+    if (navArrowRight) {
+        navArrowRight.addEventListener('click', () => adjacentTab(1));
+    }
+
+    positionArrows();
+    window.addEventListener('resize', positionArrows);
 });
