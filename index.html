@@ -18,10 +18,13 @@
 
         <!-- Mini tab navigation -->
         <nav class="mini-nav">
-            <button class="mini-tab active" data-tab="home">Home</button>
-            <button class="mini-tab" data-tab="about">About</button>
-            <button class="mini-tab" data-tab="projects">Projects</button>
-            <button class="mini-tab" data-tab="contact">Contact</button>
+            <span class="nav-title" id="navTitle">Home</span>
+            <div class="mini-tabs">
+                <button class="mini-tab active" data-tab="home">Home</button>
+                <button class="mini-tab" data-tab="about">About</button>
+                <button class="mini-tab" data-tab="projects">Projects</button>
+                <button class="mini-tab" data-tab="contact">Contact</button>
+            </div>
         </nav>
 
         <!-- ======================================== -->
@@ -79,12 +82,12 @@
                     </div>
                 </div>
 
-                <!-- PLACEHOLDER TILE (1x1) — Bottom right -->
-                <div class="tile tile-placeholder">
+                <!-- EASY MODE TOGGLE (1x1) — Bottom right -->
+                <div class="tile tile-placeholder" id="easyModeBtn">
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Coming Soon</div>
-                            <div class="tile-icon">&#8943;</div>
+                            <div class="tile-label">Easy Mode</div>
+                            <div class="tile-icon">&#8635;</div>
                         </div>
                     </div>
                 </div>
@@ -166,17 +169,19 @@
 
         <!-- ======================================== -->
         <!-- TAB: PROJECTS                            -->
-        <!-- Portfolio project tiles                  -->
+        <!-- New layout: featured on right, 4 tiles on left -->
         <!-- ======================================== -->
         <section class="tab-content" id="tab-projects">
             <div class="tile-grid">
 
-                <!-- FEATURED TILE (2x2) — Main/featured project -->
-                <div class="tile tile-featured tile-project">
+                <!-- FEATURED TILE (2x2) — Right side -->
+                <div class="tile tile-featured tile-project-featured">
+                    <div class="tile-featured-bg"></div>
+                    <div class="tile-featured-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
                             <div class="tile-label">Featured Project</div>
-                            <h3>Project One</h3>
+                            <h1 class="tile-featured-title">Project One</h1>
                             <p class="tile-detail">A cool project description goes here. Built with C++ and Unreal Engine.</p>
                             <div class="project-tags">
                                 <span class="tag small">C++</span>
@@ -186,42 +191,46 @@
                     </div>
                 </div>
 
-                <!-- STANDARD TILE (1x1) — Project #2 -->
-                <div class="tile tile-project">
+                <!-- TILE (1x1) — Video Game Design -->
+                <div class="tile tile-project-vgd">
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Project</div>
-                            <h3>Project Two</h3>
-                            <p class="tile-detail">Another awesome project. Made with Unity and C#.</p>
-                            <div class="project-tags">
-                                <span class="tag small">C#</span>
-                                <span class="tag small">Unity</span>
-                            </div>
+                            <div class="tile-label">Video Game Design</div>
+                            <h3>Level Design & Mechanics</h3>
+                            <p class="tile-detail">Game design projects</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- STANDARD TILE (1x1) — Project #3 -->
-                <div class="tile tile-project">
+                <!-- TILE (1x1) — Coding -->
+                <div class="tile tile-project-coding">
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Project</div>
-                            <h3>Project Three</h3>
-                            <p class="tile-detail">Third project. Developed using Godot Engine.</p>
-                            <div class="project-tags">
-                                <span class="tag small">Godot</span>
-                                <span class="tag small">GDScript</span>
-                            </div>
+                            <div class="tile-label">Coding</div>
+                            <h3>Software Development</h3>
+                            <p class="tile-detail">Programming projects</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- TILE (1x1) — More projects / GitHub link -->
-                <div class="tile tile-more-projects">
+                <!-- TILE (1x1) — Other -->
+                <div class="tile tile-project-other">
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">More Projects</div>
-                            <p class="tile-detail">More coming soon. Check my GitHub for updates.</p>
+                            <div class="tile-label">Other</div>
+                            <h3>Miscellaneous</h3>
+                            <p class="tile-detail">Other projects</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TILE (1x1) — Back -->
+                <div class="tile tile-nav tile-back" data-tab="about">
+                    <div class="tile-back-bg"></div>
+                    <div class="tile-avatar-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Back</div>
                         </div>
                     </div>
                 </div>

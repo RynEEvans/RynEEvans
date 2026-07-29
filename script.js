@@ -27,11 +27,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabContents = document.querySelectorAll('.tab-content');
     const navTiles = document.querySelectorAll('.tile-nav');
     const backButtons = document.querySelectorAll('.resume-back');
+    const navTitle = document.getElementById('navTitle');
     const tabOrder = ['home', 'about', 'projects', 'contact', 'resume', 'interests'];
+    const navHistory = [];
 
-    function switchTab(targetId) {
+    const tabLabels = {
+        home: 'Home',
+        about: 'About',
+        projects: 'Projects',
+        contact: 'Contact',
+        resume: 'Resume',
+        interests: 'Interests'
+    };
+
+    function switchTab(targetId, pushHistory = true) {
         const currentTab = document.querySelector('.mini-tab.active');
         const currentId = currentTab ? currentTab.dataset.tab : 'home';
+
+        if (pushHistory && currentId !== targetId) {
+            navHistory.push(currentId);
+        }
+
         const prevIndex = tabOrder.indexOf(currentId);
         const nextIndex = tabOrder.indexOf(targetId);
         const direction = nextIndex >= prevIndex ? 'right' : 'left';
@@ -47,7 +63,20 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        if (navTitle && tabLabels[targetId]) {
+            navTitle.textContent = tabLabels[targetId];
+        }
+
         document.querySelector('.content').scrollTop = 0;
+    }
+
+    function goBack() {
+        const prev = navHistory.pop();
+        if (prev) {
+            switchTab(prev, false);
+        } else {
+            switchTab('home', false);
+        }
     }
 
     tabs.forEach(tab => {
@@ -58,14 +87,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navTiles.forEach(tile => {
         tile.addEventListener('click', () => {
-            switchTab(tile.dataset.tab);
+            if (tile.classList.contains('tile-back')) {
+                goBack();
+            } else {
+                switchTab(tile.dataset.tab);
+            }
         });
     });
 
     backButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            switchTab(btn.dataset.tab);
-        });
+        btn.addEventListener('click', goBack);
     });
 
     const interestReactiveBg = document.querySelector('.tile-interest-reactive-bg');
@@ -106,15 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    interestBtns.forEach(btn => {
-        btn.addEventListener('mouseenter', () => {
-            const title = btn.querySelector('h3').textContent;
-            if (interestImages[title] && interestImg) {
-                interestImg.style.backgroundImage = `url('${interestImages[title]}')`;
-            }
-        });
-    });
-
     document.addEventListener('keydown', (e) => {
         const currentTab = document.querySelector('.mini-tab.active');
         const currentIndex = tabOrder.indexOf(currentTab.dataset.tab);
@@ -129,4 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
             switchTab(tabOrder[nextIndex]);
         }
     });
+
+    const easyModeBtn = document.getElementById('easyModeBtn');
+    if (easyModeBtn) {
+        easyModeBtn.addEventListener('click', () => {
+            document.body.classList.toggle('easy-mode');
+        });
+    }
 });
