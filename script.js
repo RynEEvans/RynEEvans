@@ -182,6 +182,10 @@ document.addEventListener('DOMContentLoaded', () => {
         touchStartY = e.changedTouches[0].screenY;
     }, { passive: true });
     document.addEventListener('touchend', (e) => {
+        const activeTab = document.querySelector('.mini-tab.active');
+        const activeId = activeTab ? activeTab.dataset.tab : '';
+        const swipeTabs = ['home', 'about', 'projects', 'contact'];
+        if (!swipeTabs.includes(activeId)) return;
         const dx = e.changedTouches[0].screenX - touchStartX;
         const dy = e.changedTouches[0].screenY - touchStartY;
         if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
