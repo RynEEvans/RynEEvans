@@ -1,0 +1,110 @@
+Hero Lore-
+
+A Carefree baseball omnic who before the awakening was a baseball training assistant and afterwards continued his job as he found a true love for baseball. I imagine him from Boston (Boston Red Sox baseball culture), but that might be too similar to Scout from TF2 so I'm not sure of the legality of that.
+
+Hero Design-
+
+Ace wears an old fashioned Baseball Uniform with Stripes and his own name Ace across the chest. He wears a baseball cap and carries a baseball bat in his left hand and a baseball in his right hand. His face is a LED Display that usually displays a smiling face (similar to the Toybox Zenyatta skin). This face could have reactive interactions such as STRIKE appearing when he eliminates a player or an X appearing on his ragdoll when he is eliminated. Damage Role
+
+[Rough Artist Rendition by Ryan Evans (I am not an artist)]
+Hero Kit -
+
+Ace carries 2 different weapons with him into battle, his Baseball, and his Bat
+Weapon Swap Ability
+
+"Two Way Player" allows him to swap between his Baseball and his Bat. Can be bound to E or something similar. Switching weapons switches abilities (Similar to Rammantra)
+
+Weapon 1 [Fastball]-
+Primary Fire-
+
+For his "Fastball" he throws a fastball pitch at his opponents that deals medium damage (100) and bounces off them toward the direction Ace threw it. Infinite Ammo with a speed of 1 baseball per second. After a fall off range of 15m the ball falls to the ground dramatically and its damage is reduced to 10.
+
+Secondary Fire-
+
+For his "Strike Out", it's a charged pitch that takes 1.5 seconds to fully charge, while charging you cannot move, but you can still move your aim. Damage ranges from 100-200 with projectile speed increasing from the base 100% to 130%
+
+Movement Ability-
+
+His "Pop Fly" allows him to charge up a jump in the direction he is looking at, allowing him to jump a distance of 5m (no charge) all the way to 15m (full charge after 2 seconds). Ace is able to catch projectiles during this jump nullifying them (similar to D.V.A. matrix, heavy projectiles cannot be caught) He has to be on the ground for this ability to work, afterwards it goes on a 15 seconds cooldown timer.
+
+Weapon 2 [At Bat]-
+Primary Fire-
+
+For his "At Bat" he swings the baseball bat for 50 dmg (100dps) and if timed correctly he is able to hit his own baseballs again towards his opponent for an additional 100 damage.
+
+Secondary Fire-
+
+For his "Dinger" he plants his feet and charges a swing that knocks back enemies. It takes 1.5 second for a full charge damage ranging from 50-150, and knocks back enemies from a range of 2m-8m.
+Movement Ability-
+
+For his "Slide" he slides in the direction he is looking for 5m
+Passive-
+
+Aces' "Bases Loaded" allows him to power up his next Secondary Fire after getting 3 eliminations with his "At Bat". After 3 eliminations (only increases with "At Bat" eliminations and not "Fastball" eliminations) his Secondary Fire on each weapon is Charged. After the Charged ability is used the passive goes on cooldown for 10 seconds. During these 10 seconds eliminations with At Bat are not counted towards "Bases Loaded".
+
+Charged [Fastball]-
+The Ability is now partially charged at 100% automatically dealing full charge damage when you click it
+Charged [At Bat]-
+The Ability is now partially charged at 100% automatically dealing full charge damage when you click it
+Ultimate-
+
+His "HOME RUN" has him toss up his ball and slam it with his baseball bat causing it to launch forwards at breakneck speeds pushing enemies back in its ripple effect and dealing massive damage to the unlucky foe it hits. Ripple effect does 30 damage to those hit, and direct impact does 300 damage, and 500 damage on a critical hit.
+
+Voicelines:
+
+Enemies: "BATTER UP"
+
+Self and Allies: "PLAY BALL"
+
+Perks-
+Minor Perks-
+
+Take-out Slide-
+Your "Slide" now deals 15 damage and knocks enemies hit by it upwards 2m
+
+Strong Hitter-
+Enemies hit by the ripple effect of "BALL GAME" are slowed 50% for 1 second
+Major Perks-
+
+You're Out!-
+Projectiles caught with "Pop Fly" add a base to "Bases Loaded"
+
+Momentum-
+Eliminations with Charged abilities grant 15% Ultimate Charge
+Hero Interactions
+The following would be performed similar to a baseball announcer
+
+On spawn in the beginning of the game: "And the first pitch is thrown by Ace!"
+
+When swapped to in the middle of the game: "And the pinch hitter comes off the bench!"
+
+During Ranked Payload when the teams swap positions: "And now we're at the bottom of the 9th"
+
+With Lucio:
+
+"So, I'm tryna ask everybody this: What is your favorite animal?
+
+"Well...a bat!"
+
+"Uh... yeah! I can see it."
+
+With Wuyang:
+
+"Do you think you could teach me how to throw one of your sick curveballs?"
+
+"Only if you teach me that swing of yours"
+
+"Deal!"
+
+Voicelines:
+
+"HOOOOOT DOOGGG"
+
+Possible Skin Cosmetics
+
+Circus/Clown themed skin where Ace's baseball cap is replaced with a Rainbow Propeller hat, his bat replaced with a Ballon Bat, and his baseballs replaced with water balloons, while wearing Clown or Circus Attire.
+Why I Think Ace would be good for OW
+
+I imagine Ace as another Oddball hero. Someone players can have fun with and is someone unique that stands out in both their playstyle and their personality. He is a happy and go lucky projectile hero that excels at mid range and is usable in close range. The playerbase seems to want these types of characters and especially Omnics.
+
+Baseball is an ever growing sport worldwide especially with Shohei Ohtani's stardom. This opens the door to baseball team collaborations, or World Series events.

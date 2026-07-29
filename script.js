@@ -2,6 +2,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const scaleWrap = document.getElementById('scaleWrap');
     const content = document.getElementById('mainContent');
 
+    function playSound(src) {
+        try {
+            const a = new Audio(src);
+            a.volume = 0.5;
+            a.play();
+        } catch (_) {}
+    }
+
+    function playSelect() { playSound('sounds/10.%20Select%20A.mp3'); }
+    function playPageLeft() { playSound('sounds/08.%20Page%20Left.mp3'); }
+    function playPageRight() { playSound('sounds/09.%20Page%20Right.mp3'); }
+
     function fitToScreen() {
         if (window.innerWidth < 700) {
             scaleWrap.style.transform = '';
@@ -85,12 +97,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
+            playSelect();
             switchTab(tab.dataset.tab);
         });
     });
 
     navTiles.forEach(tile => {
         tile.addEventListener('click', () => {
+            playSelect();
             if (tile.classList.contains('tile-back')) {
                 goBack();
             } else {
@@ -100,7 +114,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     backButtons.forEach(btn => {
-        btn.addEventListener('click', goBack);
+        btn.addEventListener('click', () => {
+            playSelect();
+            goBack();
+        });
     });
 
     const interestReactiveBg = document.querySelector('.tile-interest-reactive-bg');
@@ -147,14 +164,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (e.key === 'ArrowLeft') {
             e.preventDefault();
+            playPageLeft();
             const prevIndex = (currentIndex - 1 + tabOrder.length) % tabOrder.length;
             switchTab(tabOrder[prevIndex]);
         } else if (e.key === 'ArrowRight') {
             e.preventDefault();
+            playPageRight();
             const nextIndex = (currentIndex + 1) % tabOrder.length;
             switchTab(tabOrder[nextIndex]);
         }
     });
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+    document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+        touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+    document.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].screenX - touchStartX;
+        const dy = e.changedTouches[0].screenY - touchStartY;
+        if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+            adjacentTab(dx > 0 ? -1 : 1);
+        }
+    }, { passive: true });
 
     const easyModeBtn = document.getElementById('easyModeBtn');
     if (easyModeBtn) {
@@ -193,6 +226,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const navArrowRight = document.getElementById('navArrowRight');
 
     function adjacentTab(direction) {
+        if (direction === -1) playPageLeft();
+        else playPageRight();
         const mainTabs = ['home', 'about', 'projects', 'contact'];
         const currentTab = document.querySelector('.mini-tab.active');
         const currentId = currentTab ? currentTab.dataset.tab : 'home';
@@ -427,6 +462,48 @@ The Juggernaut Character Concept: Tank/Vanguard
 
 A Thread`,
 
+        'Hero%20Concepts/Ace.txt': `
+
+Ace — Overwatch DPS/Damage Concept
+
+Hero Lore:
+A Carefree baseball omnic who before the awakening was a baseball training
+assistant and afterwards continued his job as he found a true love for baseball.
+
+Hero Kit:
+Ace carries 2 different weapons — his Baseball and his Bat. "Two Way Player"
+ability swaps between them (similar to Rammattra).
+
+Weapon 1 [Fastball]:
+- Primary: Throws a fastball pitch dealing 100 damage, bounces off enemies.
+  Infinite ammo, 1 ball/sec. Falloff at 15m (reduced to 10 dmg).
+- Secondary "Strike Out": Charged pitch (1.5s), 100-200 damage, cannot move
+  while charging. Projectile speed increases from 100% to 130%.
+
+Weapon 2 [At Bat]:
+- Primary: Baseball bat swing for 50 dmg (100dps). Timed swings can hit own
+  baseballs again for +100 dmg.
+- Secondary "Dinger": Charged swing (1.5s) that knocks back enemies.
+  Damage 50-150, knockback range 2m-8m.
+
+Movement:
+- "Pop Fly" (Fastball): Charged jump 5m-15m, catches projectiles during jump
+  (D.Va matrix style). 15s cooldown, ground-only.
+- "Slide" (At Bat): Slide 5m in look direction.
+
+Passive "Bases Loaded":
+After 3 eliminations with At Bat, next Secondary Fire on each weapon is
+auto-charged. 10s cooldown between activations.
+
+Ultimate "HOME RUN":
+Tosses ball up and slams it forward. Ripple effect: 30 damage, pushback.
+Direct hit: 300 damage. Critical hit: 500 damage.
+
+Voicelines:
+- Enemies: "BATTER UP"
+- Self/Allies: "PLAY BALL"
+- "HOOOOOT DOOGGG"`,
+
         'Hero%20Concepts/MilesMoralesMR.txt': `
 
 Miles Morales Character Concept: Support/Strategist
@@ -460,6 +537,69 @@ characters in the support role helps people to want to play it`
             if (e.target === heroModal) {
                 heroModal.classList.remove('active');
             }
+        });
+    }
+
+    // Hero filter dropdown
+    const heroTiles = document.querySelectorAll('#tab-heroconcepts .tile-hero-modal');
+    const filterBar = document.getElementById('heroFilterBar');
+
+    if (heroTiles.length && filterBar) {
+        const tagSet = new Set();
+        heroTiles.forEach(t => (t.dataset.tags || '').split(',').forEach(tag => { if (tag) tagSet.add(tag); }));
+
+        const toggle = document.createElement('button');
+        toggle.className = 'hero-filter-toggle';
+        toggle.textContent = 'Filter';
+        filterBar.appendChild(toggle);
+
+        const dropdown = document.createElement('div');
+        dropdown.className = 'hero-filter-dropdown';
+        filterBar.appendChild(dropdown);
+
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggle.classList.toggle('open');
+            dropdown.classList.toggle('open');
+        });
+
+        document.addEventListener('click', () => {
+            toggle.classList.remove('open');
+            dropdown.classList.remove('open');
+        });
+
+        const activeFilters = new Set();
+
+        function applyFilter() {
+            heroTiles.forEach(t => {
+                const tags = (t.dataset.tags || '').split(',');
+                const match = activeFilters.size === 0 || [...activeFilters].some(f => tags.includes(f));
+                t.classList.toggle('hidden', !match);
+            });
+        }
+
+        const tagOrder = ['overwatch', 'marvel-rivals'];
+        [...tagSet].sort((a, b) => {
+            const ai = tagOrder.indexOf(a);
+            const bi = tagOrder.indexOf(b);
+            if (ai !== -1 && bi !== -1) return ai - bi;
+            if (ai !== -1) return -1;
+            if (bi !== -1) return 1;
+            return a.localeCompare(b);
+        }).forEach(tag => {
+            const label = document.createElement('label');
+            label.className = 'hero-filter-option';
+            const cb = document.createElement('input');
+            cb.type = 'checkbox';
+            cb.value = tag;
+            cb.addEventListener('change', () => {
+                if (cb.checked) activeFilters.add(tag);
+                else activeFilters.delete(tag);
+                applyFilter();
+            });
+            label.appendChild(cb);
+            label.appendChild(document.createTextNode(tag));
+            dropdown.appendChild(label);
         });
     }
 });
