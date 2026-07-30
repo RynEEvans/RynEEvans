@@ -198,9 +198,7 @@
                 <div class="tile tile-project-vgd tile-nav" data-tab="vgd">
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Video Game Design</div>
-                            <h3>Level Design & Mechanics</h3>
-                            <p class="tile-detail">Game design projects</p>
+                            <h3>Video Game Design</h3>                            
                         </div>
                     </div>
                 </div>
@@ -209,9 +207,7 @@
                 <div class="tile tile-project-coding">
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Coding</div>
-                            <h3>Software Development</h3>
-                            <p class="tile-detail">Programming projects</p>
+                            <h3>Software Development</h3>                            
                         </div>
                     </div>
                 </div>
@@ -219,21 +215,19 @@
                 <!-- TILE (1x1) — Other -->
                 <div class="tile tile-project-other">
                     <div class="tile-body">
-                        <div class="tile-text-bar">
-                            <div class="tile-label">Other</div>
-                            <h3>Miscellaneous</h3>
-                            <p class="tile-detail">Other projects</p>
+                        <div class="tile-text-bar">                            
+                            <h3>Other Projects</h3>                           
                         </div>
                     </div>
                 </div>
 
-                <!-- TILE (1x1) — Back -->
-                <div class="tile tile-nav tile-back" data-tab="about">
-                    <div class="tile-back-bg"></div>
-                    <div class="tile-avatar-overlay"></div>
+                <!-- TILE (1x1) — Dog -->
+                <div class="tile tile-dog">
+                    <div class="tile-dog-bg" style="background-image: url('images/Dog/dog.png')"></div>
+                    <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <h3>Back</h3>
+                            <h3>My Dog</h3>
                         </div>
                     </div>
                 </div>
@@ -403,6 +397,18 @@
                             <div class="tile-label">Overwatch</div>
                             <h3>Ace</h3>
                             <p class="tile-detail">DPS/Damage concept</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/DocOckMR.txt" data-tags="marvel-rivals,support">
+                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/DocOckMR.png')"></div>
+                    <div class="tile-hero-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Marvel Rivals</div>
+                            <h3>Doctor Octopus</h3>
+                            <p class="tile-detail">Support/Strategist concept</p>
                         </div>
                     </div>
                 </div>
@@ -667,10 +673,32 @@
         </div>
     </div>
 
+    <div class="dog-modal" id="dogModal">
+        <div class="dog-modal-content">
+            <button class="dog-modal-close" id="dogModalClose">&times;</button>
+            <div class="dog-modal-body" id="dogModalBody"></div>
+        </div>
+    </div>
+
+    <div class="dog-view-modal" id="dogViewModal">
+        <div class="dog-view-modal-content">
+            <button class="dog-modal-close" id="dogViewBack">&#8592; Back</button>
+            <div class="dog-view-modal-body" id="dogViewBody"></div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 
     <!-- Music Player -->
     <div class="music-player">
+        <div class="music-slideout" id="musicSlideout">
+            <button class="music-play-btn" id="musicPlayBtn">&#9654;</button>
+            <span class="vol-icon" id="volIcon">&#128266;</span>
+            <input type="range" class="volume-slider" id="volumeSlider" min="0" max="1" step="0.05" value="0.3">
+            <label class="sfx-toggle" id="sfxToggle">
+                <input type="checkbox" id="sfxCheckbox" checked> Menu SFX
+            </label>
+        </div>
         <button class="music-toggle" id="musicToggle">&#9835;</button>
         <audio id="bgMusic" loop>
             <source src="music/background.mp3" type="audio/mpeg">

@@ -2,7 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const scaleWrap = document.getElementById('scaleWrap');
     const content = document.getElementById('mainContent');
 
+    const sfxCheckbox = document.getElementById('sfxCheckbox');
+
     function playSound(src) {
+        if (sfxCheckbox && !sfxCheckbox.checked) return;
         try {
             const a = new Audio(src);
             a.volume = 0.5;
@@ -146,13 +149,62 @@ document.addEventListener('DOMContentLoaded', () => {
     let isPlaying = false;
 
     if (musicToggle && bgMusic) {
-        musicToggle.addEventListener('click', () => {
+        const volumeSlider = document.getElementById('volumeSlider');
+        const volIcon = document.getElementById('volIcon');
+        const musicPlayBtn = document.getElementById('musicPlayBtn');
+        bgMusic.volume = 0.3;
+
+        if (volumeSlider) {
+            volumeSlider.addEventListener('input', () => {
+                bgMusic.volume = parseFloat(volumeSlider.value);
+            });
+        }
+
+        function showNowPlaying() {
+            const existing = document.querySelector('.music-toast');
+            if (existing) existing.remove();
+            const toast = document.createElement('div');
+            toast.className = 'music-toast';
+            toast.textContent = 'Now Playing: Witchy [Instrumental] - Kaytranada, Childish Gambino';
+            document.body.appendChild(toast);
+            requestAnimationFrame(() => toast.classList.add('show'));
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 4000);
+        }
+
+        function startMusic() {
+            if (!isPlaying) {
+                bgMusic.play().then(() => {
+                    isPlaying = true;
+                    musicPlayBtn.classList.add('playing');
+                    musicPlayBtn.innerHTML = '&#9612;&#9612;';
+                    showNowPlaying();
+                }).catch(() => {});
+            }
+            document.removeEventListener('click', startMusic);
+            document.removeEventListener('touchstart', startMusic);
+        }
+        document.addEventListener('click', startMusic);
+        document.addEventListener('touchstart', startMusic);
+
+        musicToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.querySelector('.music-player').classList.toggle('open');
+        });
+
+        musicPlayBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
             if (isPlaying) {
                 bgMusic.pause();
-                musicToggle.classList.remove('playing');
+                musicPlayBtn.classList.remove('playing');
+                musicPlayBtn.innerHTML = '&#9654;';
             } else {
-                bgMusic.play();
-                musicToggle.classList.add('playing');
+                bgMusic.play().then(() => {
+                    musicPlayBtn.classList.add('playing');
+                    musicPlayBtn.innerHTML = '&#9612;&#9612;';
+                }).catch(() => {});
             }
             isPlaying = !isPlaying;
         });
@@ -518,7 +570,37 @@ Preface:
 A lot of people may be questioning the choice of support for Miles.
 I have 2 main reasonings behind it. A webslinger in every role would
 be amazing for diversity of the cast, and having cool and popular
-characters in the support role helps people to want to play it`
+characters in the support role helps people to want to play it`,
+
+        'Hero%20Concepts/DocOckMR.txt': `
+
+Doctor Octopus Character Concept: Support/Strategist
+
+Preface:
+"I think he fits duelist or tank more", these are all valid but I feel as though there isn't a lot of popular healers/support characters in Marvel so changes will have to be made to some character which I like to do. I'm also imagining this pre Superior Spider-Man
+
+Passive: Tentacles
+When not using all 4 of his tentacles he is able to move quicker than normal walking speed. While using at least one of them he moves slower than normal walking speed on just 2 tentacles. He can wall climb at normal speed using the tentacles, and can use his tentacles to heal and damage while using his other 2 to hang onto the wall.
+
+Primary Fire: Laser Tentacle (top right)
+Slow firing but mid damaging beam. Overheat system like Orisa in OW2.
+
+Alt Fire: Healing Tentacle (top left)
+Auto-target beam towards allies healing them. Same overheat mechanic.
+
+Both can be used at the same time, consuming both overheat bars faster.
+
+Ability 1: Overdrive
+10 seconds, decreases overheat buildup. 30 second cooldown.
+
+Ability 2: Quick Escape
+Ejects from tentacles leaving them as a turret auto-healing/damaging nearby. 200hp health bar on tentacles. Can be destroyed leaving Doc Oct with melee until they return in 15 seconds. Press again to recall.
+
+Ultimate: All Hands on Deck
+Uses all 4 tentacles to weave a beam of destruction and healing forward for 5 seconds (Moira-like). Afterwards vulnerable until tentacles recharge after 3 seconds.
+
+Team Up: Shared Minds (Spider-Man)
+Oct makes spider bots giving Peter a trap that auto-adds a web tracker`
     };
 
     document.querySelectorAll('.tile-hero-modal').forEach(tile => {
@@ -540,6 +622,80 @@ characters in the support role helps people to want to play it`
         heroModal.addEventListener('click', (e) => {
             if (e.target === heroModal) {
                 heroModal.classList.remove('active');
+            }
+        });
+    }
+
+    // Dog modal
+    const dogModal = document.getElementById('dogModal');
+    const dogModalBody = document.getElementById('dogModalBody');
+    const dogModalClose = document.getElementById('dogModalClose');
+    const dogTile = document.querySelector('.tile-dog');
+
+    const dogImages = [
+        'images/Dog/dog.png',
+        'images/Dog/dog_bread.png',
+        'images/Dog/dog_fry.png',
+        'images/Dog/dog_grass.png',
+        'images/Dog/dog_puppy.png',
+        'images/Dog/dog_silly.png',
+        'images/Dog/dog_smile.png',
+        'images/Dog/dog_stick.png'
+    ];
+
+    const dogViewModal = document.getElementById('dogViewModal');
+    const dogViewBody = document.getElementById('dogViewBody');
+    const dogViewBack = document.getElementById('dogViewBack');
+
+    if (dogTile) {
+        dogTile.addEventListener('click', () => {
+            dogModalBody.innerHTML = dogImages.map(src =>
+                `<div class="dog-modal-img"><img src="${src}" alt="dog photo"></div>`
+            ).join('');
+            dogModal.classList.add('active');
+        });
+    }
+
+    dogModalBody.addEventListener('click', (e) => {
+        const imgWrap = e.target.closest('.dog-modal-img');
+        if (!imgWrap) return;
+        const img = imgWrap.querySelector('img');
+        if (!img) return;
+        dogViewBody.innerHTML = '';
+        const fullImg = document.createElement('img');
+        fullImg.src = img.src;
+        fullImg.alt = 'dog photo';
+        dogViewBody.appendChild(fullImg);
+        dogModal.classList.remove('active');
+        dogViewModal.classList.add('active');
+    });
+
+    if (dogModalClose) {
+        dogModalClose.addEventListener('click', () => {
+            dogModal.classList.remove('active');
+        });
+    }
+
+    if (dogModal) {
+        dogModal.addEventListener('click', (e) => {
+            if (e.target === dogModal) {
+                dogModal.classList.remove('active');
+            }
+        });
+    }
+
+    if (dogViewBack) {
+        dogViewBack.addEventListener('click', () => {
+            dogViewModal.classList.remove('active');
+            dogModal.classList.add('active');
+        });
+    }
+
+    if (dogViewModal) {
+        dogViewModal.addEventListener('click', (e) => {
+            if (e.target === dogViewModal) {
+                dogViewModal.classList.remove('active');
+                dogModal.classList.add('active');
             }
         });
     }
