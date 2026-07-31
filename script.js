@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navTiles = document.querySelectorAll('.tile-nav');
     const backButtons = document.querySelectorAll('.resume-back');
     const navTitle = document.getElementById('navTitle');
-    const tabOrder = ['home', 'about', 'projects', 'vgd', 'heroconcepts', 'contact', 'resume', 'interests'];
+    const tabOrder = ['home', 'about', 'projects', 'vgd', 'heroconcepts', 'videogames', 'contact', 'resume', 'interests'];
     const navHistory = [];
 
     const tabLabels = {
@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
         resume: 'Resume',
         interests: 'Interests',
         vgd: 'Video Game Design',
-        heroconcepts: 'Hero Concepts'
+        heroconcepts: 'Hero Concepts',
+        videogames: 'Video Games'
     };
 
     function switchTab(targetId, pushHistory = true) {
