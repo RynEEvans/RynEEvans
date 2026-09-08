@@ -1,0 +1,5 @@
+University Class Registration Software
+
+Built in a group of 6 as a course registration system.
+Used Azure Cloud Development and SQL to allow users to register for courses.
+Used AI Foundry to make an AI assistant that helped users build their perfect schedule.

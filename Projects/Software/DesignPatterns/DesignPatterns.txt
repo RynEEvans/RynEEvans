@@ -1,0 +1,9 @@
+Basic Design Patterns
+
+Coded the beginner design patterns:
+- Decorator
+- Iterator
+- Observer
+- Singleton
+- State
+- Strategy

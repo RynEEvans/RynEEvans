@@ -1,0 +1,3 @@
+Custom Music Making Software
+
+Built in a group of 4, designed a music making software where users could make short songs and play the notes using JavaFX.

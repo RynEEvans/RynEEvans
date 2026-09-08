@@ -1,0 +1,3 @@
+Tip Tracker
+
+A tool for tracking and logging daily tips.

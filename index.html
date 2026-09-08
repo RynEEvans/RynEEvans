@@ -8,13 +8,15 @@
 </head>
 <body>
 
+    <a class="skip-link" href="#mainContent">Skip to main content</a>
+
     <!-- ============================================ -->
     <!-- MAIN CONTENT                                 -->
     <!-- Each section below is a tab page.            -->
     <!-- Toggle "active" class to show a tab.         -->
     <!-- ============================================ -->
     <div class="scale-wrap" id="scaleWrap">
-    <main class="content" id="mainContent">
+    <main class="content" id="mainContent" tabindex="-1">
 
         <!-- Side arrows -->
         <button class="nav-arrow nav-arrow-left" id="navArrowLeft" aria-label="Previous tab">&#8249;</button>
@@ -94,7 +96,7 @@
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <h3>Easy Mode</h3>
+                            <h3>Back</h3>
                         </div>
                     </div>
                 </div>
@@ -122,12 +124,13 @@
                     </div>
                 </div>
 
-                <!-- STANDARD TILE (1x1) — Pronouns -->
-                <div class="tile">
+                <!-- STANDARD TILE (1x1) — University -->
+                <div class="tile tile-university">
+                    <div class="tile-university-bg" style="background-image: url('images/gamecock.png')"></div>
+                    <div class="tile-avatar-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
-                            <div class="tile-label">Pronouns</div>
-                            <h3>he/him</h3>
+                            <h3>University of South Carolina</h3>
                         </div>
                     </div>
                 </div>
@@ -210,7 +213,7 @@
                 </div>
 
                 <!-- TILE (1x1) — Coding -->
-                <div class="tile tile-project-coding">
+                <div class="tile tile-project-coding tile-nav" data-tab="software">
                     <div class="tile-coding-symbol">&lt;/&gt;</div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
@@ -221,7 +224,7 @@
                 </div>
 
                 <!-- TILE (1x1) — Other -->
-                <div class="tile tile-project-other">
+                <div class="tile tile-project-other tile-nav" data-tab="other">
                     <div class="tile-question-symbol">?</div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
@@ -298,13 +301,129 @@
         </section>
 
         <!-- ======================================== -->
+        <!-- TAB: SOFTWARE DEVELOPMENT                -->
+        <!-- Horizontal scrollable gallery            -->
+        <!-- ======================================== -->
+        <section class="tab-content" id="tab-software">
+            <div class="hero-scroll-wrap">
+
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Software/ClassRegistration/ClassRegistration.txt">
+                    <div class="tile-coding-symbol">&lt;/&gt;</div>
+                    <div class="tile-hero-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Project</div>
+                            <h3>Class Registration</h3>
+                            <p class="tile-detail">Azure Cloud &amp; SQL</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Software/MusicMaker/MusicMaker.txt">
+                    <div class="tile-coding-symbol">&lt;/&gt;</div>
+                    <div class="tile-hero-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Project</div>
+                            <h3>Music Maker</h3>
+                            <p class="tile-detail">JavaFX song builder</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Software/DesignPatterns/DesignPatterns.txt">
+                    <div class="tile-coding-symbol">&lt;/&gt;</div>
+                    <div class="tile-hero-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Skills</div>
+                            <h3>Design Patterns</h3>
+                            <p class="tile-detail">Decorator, Observer, State &amp; more</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Software/TipTracker/TipTracker.txt">
+                    <div class="tile-coding-symbol">&lt;/&gt;</div>
+                    <div class="tile-hero-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Project</div>
+                            <h3>Tip Tracker</h3>
+                            <p class="tile-detail">Track and log daily tips</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Software/Portfolio/Portfolio.txt">
+                    <div class="tile-coding-symbol">&lt;/&gt;</div>
+                    <div class="tile-hero-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Project</div>
+                            <h3>Portfolio</h3>
+                            <p class="tile-detail">This website!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile tile-hero tile-nav" data-tab="projects">
+                    <div class="tile-back-bg"></div>
+                    <div class="tile-avatar-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Back</div>
+                            <h3>Back to Projects</h3>
+                            <p class="tile-detail">Return to Projects</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
+        <!-- TAB: OTHER PROJECTS                      -->
+        <!-- Horizontal scrollable gallery            -->
+        <!-- ======================================== -->
+        <section class="tab-content" id="tab-other">
+            <div class="hero-scroll-wrap">
+
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Other/GoatOfGoats/GoatOfGoats.txt">
+                    <div class="tile-question-symbol">?</div>
+                    <div class="tile-hero-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Project</div>
+                            <h3>Goat of Goats</h3>
+                            <p class="tile-detail">The ultimate goat ranking</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tile tile-hero tile-nav" data-tab="projects">
+                    <div class="tile-back-bg"></div>
+                    <div class="tile-avatar-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Back</div>
+                            <h3>Back to Projects</h3>
+                            <p class="tile-detail">Return to Projects</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ======================================== -->
         <!-- TAB: HERO CONCEPTS                       -->
         <!-- Horizontal scrollable tall tile gallery  -->
         <!-- ======================================== -->
         <section class="tab-content" id="tab-heroconcepts">
             <div class="hero-scroll-wrap">
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/NightcrawlerMR.txt" data-tags="marvel-rivals,dps">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/NightcrawlerMR.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/NightcrawlerMR/NightcrawlerMR.txt" data-tags="marvel-rivals,dps">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/NightcrawlerMR/NightcrawlerMR.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -315,8 +434,8 @@
                     </div>
                 </div>
 
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/ProfXMR.txt" data-tags="marvel-rivals,support">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/ProfXMR.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/ProfXMR/ProfXMR.txt" data-tags="marvel-rivals,support">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/ProfXMR/ProfXMR.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -327,8 +446,8 @@
                     </div>
                 </div>
 
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/AntManWaspMR.txt" data-tags="marvel-rivals,support">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/AntManWaspMR.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/AntManWaspMR/AntManWaspMR.txt" data-tags="marvel-rivals,support">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/AntManWaspMR/AntManWaspMR.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -339,8 +458,8 @@
                     </div>
                 </div>
 
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/DaredevilMR.txt" data-tags="marvel-rivals,dps">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/DaredevilMR.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/DaredevilMR/DaredevilMR.txt" data-tags="marvel-rivals,dps">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/DaredevilMR/DaredevilMR.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -351,8 +470,8 @@
                     </div>
                 </div>
 
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/GhostRiderMR.txt" data-tags="marvel-rivals,dps">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/GhostRiderMR.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/GhostRiderMR/GhostRiderMR.txt" data-tags="marvel-rivals,dps">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/GhostRiderMR/GhostRiderMR.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -363,8 +482,8 @@
                     </div>
                 </div>
 
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/GhostRiderVanguardMR.txt" data-tags="marvel-rivals">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/GhostRiderVanguardMR.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/GhostRiderVanguardMR/GhostRiderVanguardMR.txt" data-tags="marvel-rivals">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/GhostRiderVanguardMR/GhostRiderVanguardMR.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -375,8 +494,8 @@
                     </div>
                 </div>
 
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/JuggernautMR.txt" data-tags="marvel-rivals,tank">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/JuggernautMR.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/JuggernautMR/JuggernautMR.txt" data-tags="marvel-rivals,tank">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/JuggernautMR/JuggernautMR.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -387,8 +506,8 @@
                     </div>
                 </div>
 
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/MilesMoralesMR.txt" data-tags="marvel-rivals,support">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/MilesMoralesMR.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/MilesMoralesMR/MilesMoralesMR.txt" data-tags="marvel-rivals,support">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/MilesMoralesMR/MilesMoralesMR.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -399,8 +518,8 @@
                     </div>
                 </div>
 
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/Ace.txt" data-tags="overwatch,dps">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/AceOW.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/Ace/Ace.txt" data-tags="overwatch,dps">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/Ace/AceOW.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -411,8 +530,8 @@
                     </div>
                 </div>
 
-                <div class="tile tile-hero tile-hero-modal" data-file="Hero%20Concepts/DocOckMR.txt" data-tags="marvel-rivals,support">
-                    <div class="tile-hero-bg" style="background-image: url('Hero%20Concepts/images/DocOckMR.png')"></div>
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Hero%20Concepts/DocOckMR/DocOckMR.txt" data-tags="marvel-rivals,support">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Hero%20Concepts/DocOckMR/DocOckMR.png')"></div>
                     <div class="tile-hero-overlay"></div>
                     <div class="tile-body">
                         <div class="tile-text-bar">
@@ -444,6 +563,18 @@
         <!-- ======================================== -->
         <section class="tab-content" id="tab-videogames">
             <div class="hero-scroll-wrap">
+                <div class="tile tile-hero tile-hero-modal" data-file="Projects/Video%20Games/AISCharon/AISCharon.txt" data-tags="video-game">
+                    <div class="tile-hero-bg" style="background-image: url('Projects/Video%20Games/AISCharon/ais_charon.png')"></div>
+                    <div class="tile-hero-overlay"></div>
+                    <div class="tile-body">
+                        <div class="tile-text-bar">
+                            <div class="tile-label">Video Game</div>
+                            <h3>AIS Charon</h3>
+                            <p class="tile-detail">Game concept</p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="tile tile-hero tile-nav" data-tab="vgd">
                     <div class="tile-back-bg"></div>
                     <div class="tile-avatar-overlay"></div>
@@ -463,31 +594,31 @@
         <!-- Email, LinkedIn, GitHub links            -->
         <!-- ======================================== -->
         <section class="tab-content" id="tab-contact">
-            <div class="tile-grid">
+            <div class="contact-wrap">
 
-                <!-- TILE (1x1) — LinkedIn -->
-                <a href="https://linkedin.com/in/ryan-evans-981426249" class="tile tile-contact" target="_blank">
-                    <div class="tile-body">
-                        <div class="tile-contact-icon">in</div>
-                        <div class="tile-contact-info">
-                            <div class="tile-label">LinkedIn</div>
-                            <h3>linkedin.com/in/ryan-evans-981426249</h3>
-                        </div>
-                        <div class="tile-contact-arrow">&rsaquo;</div>
+                <!-- CONTACT FORM -->
+                <form class="contact-form" id="contactForm" action="https://formspree.io/f/mnpqberv" method="POST">
+                    <h3 class="contact-form-title">Send me a message</h3>
+                    <div class="contact-form-row">
+                        <input type="text" name="name" placeholder="Your name" required>
+                        <input type="email" name="email" placeholder="Your email" required>
                     </div>
-                </a>
+                    <textarea name="message" placeholder="Your message" rows="6" required></textarea>
+                    <button type="submit" class="contact-form-btn">Send</button>
+                    <p class="contact-form-status" id="contactFormStatus"></p>
+                </form>
 
-                <!-- TILE (1x1) — GitHub -->
-                <a href="https://github.com/RynEEvans" class="tile tile-contact" target="_blank">
-                    <div class="tile-body">
-                        <div class="tile-contact-icon">G</div>
-                        <div class="tile-contact-info">
-                            <div class="tile-label">GitHub</div>
-                            <h3>github.com/RynEEvans</h3>
-                        </div>
-                        <div class="tile-contact-arrow">&rsaquo;</div>
-                    </div>
-                </a>
+                <!-- SOCIAL LINKS -->
+                <div class="contact-socials">
+                    <a href="https://linkedin.com/in/ryan-evans-981426249" class="contact-social" target="_blank">
+                        <span class="contact-social-icon">in</span>
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/RynEEvans" class="contact-social" target="_blank">
+                        <span class="contact-social-icon">G</span>
+                        GitHub
+                    </a>
+                </div>
 
             </div>
         </section>
@@ -683,7 +814,7 @@
                         <div class="tile-avatar-overlay"></div>
                         <div class="tile-body">
                             <div class="tile-text-bar">
-                                <h3>Back</h3>
+<h3>Easy Mode</h3>
                             </div>
                         </div>
                     </div>

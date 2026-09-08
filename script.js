@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navTiles = document.querySelectorAll('.tile-nav');
     const backButtons = document.querySelectorAll('.resume-back');
     const navTitle = document.getElementById('navTitle');
-    const tabOrder = ['home', 'about', 'projects', 'vgd', 'heroconcepts', 'videogames', 'contact', 'resume', 'interests'];
+    const tabOrder = ['home', 'about', 'projects', 'vgd', 'heroconcepts', 'videogames', 'software', 'other', 'contact', 'resume', 'interests'];
     const navHistory = [];
 
     const tabLabels = {
@@ -55,10 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
         interests: 'Interests',
         vgd: 'Video Game Design',
         heroconcepts: 'Hero Concepts',
-        videogames: 'Video Games'
+        videogames: 'Video Games',
+        software: 'Software Development',
+        other: 'Other Projects'
     };
 
-    function switchTab(targetId, pushHistory = true) {
+    function switchTab(targetId, pushHistory = true, forcedDirection = null) {
         const currentTab = document.querySelector('.mini-tab.active');
         const currentId = currentTab ? currentTab.dataset.tab : 'home';
 
@@ -68,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const prevIndex = tabOrder.indexOf(currentId);
         const nextIndex = tabOrder.indexOf(targetId);
-        const direction = nextIndex >= prevIndex ? 'right' : 'left';
+        const direction = forcedDirection || (nextIndex >= prevIndex ? 'right' : 'left');
 
         tabs.forEach(tab => {
             tab.classList.toggle('active', tab.dataset.tab === targetId);
@@ -248,9 +250,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const easyModeBtn = document.getElementById('easyModeBtn');
     if (easyModeBtn) {
+        const easyModeLabel = easyModeBtn.querySelector('.tile-text-bar h3');
+        const updateEasyModeLabel = () => {
+            if (easyModeLabel) {
+                easyModeLabel.textContent = document.body.classList.contains('easy-mode') ? 'Back' : 'Easy Mode';
+            }
+        };
         easyModeBtn.addEventListener('click', () => {
             document.body.classList.toggle('easy-mode');
+            updateEasyModeLabel();
         });
+        updateEasyModeLabel();
     }
 
     function positionArrows() {
@@ -261,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const activeTab = document.querySelector('.tab-content.active');
         const activeId = activeTab ? activeTab.id.replace('tab-', '') : '';
-        if (activeId === 'resume' || activeId === 'interests' || activeId === 'vgd' || activeId === 'heroconcepts') {
+        if (activeId === 'resume' || activeId === 'interests' || activeId === 'vgd' || activeId === 'heroconcepts' || activeId === 'software' || activeId === 'other') {
             if (navArrowLeft) navArrowLeft.style.display = 'none';
             if (navArrowRight) navArrowRight.style.display = 'none';
             return;
@@ -289,12 +299,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const currentTab = document.querySelector('.mini-tab.active');
         const currentId = currentTab ? currentTab.dataset.tab : 'home';
         const currentIndex = mainTabs.indexOf(currentId);
+        const slideDirection = direction === 1 ? 'right' : 'left';
         if (currentIndex === -1) {
-            switchTab(direction === 1 ? 'home' : 'contact', true);
+            switchTab(direction === 1 ? 'home' : 'contact', true, slideDirection);
             return;
         }
         const nextIndex = (currentIndex + direction + mainTabs.length) % mainTabs.length;
-        switchTab(mainTabs[nextIndex]);
+        switchTab(mainTabs[nextIndex], true, slideDirection);
     }
 
     if (navArrowLeft) {
@@ -313,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroModalClose = document.getElementById('heroModalClose');
 
     const heroContent = {
-        'Hero%20Concepts/NightcrawlerMR.txt': `
+        'Projects/Hero%20Concepts/NightcrawlerMR/NightcrawlerMR.txt': `
 
 Nightcrawler Character Concept I made (1/2)
 
@@ -354,7 +365,7 @@ Uncanny Spiderman design
 
 Thank you for reading!`,
 
-        'Hero%20Concepts/ProfXMR.txt': `
+        'Projects/Hero%20Concepts/ProfXMR/ProfXMR.txt': `
 
 Professor X Character Concept: Support/Strategist (1/?)
 
@@ -388,7 +399,7 @@ He gets slow fall with the chair
 
 Thank you for reading!!!`,
 
-        'Hero%20Concepts/AntManWaspMR.txt': `
+        'Projects/Hero%20Concepts/AntManWaspMR/AntManWaspMR.txt': `
 
 Ant-Man and the Wasp Character Concept: Art by ScottCohn on devianart
 
@@ -445,7 +456,7 @@ Ant-Man grows REALLY BIG and gets increased health and damage on melee while the
 
 If you read all that I'm legitimately surprised and thank you so much`,
 
-        'Hero%20Concepts/DaredevilMR.txt': `
+        'Projects/Hero%20Concepts/DaredevilMR/DaredevilMR.txt': `
 
 Daredevil Character Concept: DPS/Duelist
 
@@ -474,11 +485,11 @@ Daredevil is a fan favorite and probably the hardest to balance while being fait
 
 As always thanks for reading`,
 
-        'Hero%20Concepts/GhostRiderMR.txt': `
+        'Projects/Hero%20Concepts/GhostRiderMR/GhostRiderMR.txt': `
 
 Ghost Rider Character Concept: DPS/Duelist`,
 
-        'Hero%20Concepts/GhostRiderVanguardMR.txt': `
+        'Projects/Hero%20Concepts/GhostRiderVanguardMR/GhostRiderVanguardMR.txt': `
 
 Ghost Rider Vanguard Concept: A Thread for @JETTyoutube
 
@@ -513,13 +524,13 @@ So basically if the enemy Hela is stomping and on a 10 killstreak without dying,
 
 Skins: All other Ghost Riders — Danny Ketch, Robbie Reyes, Alejandra Jones, and Charlie`,
 
-        'Hero%20Concepts/JuggernautMR.txt': `
+        'Projects/Hero%20Concepts/JuggernautMR/JuggernautMR.txt': `
 
 The Juggernaut Character Concept: Tank/Vanguard
 
 A Thread`,
 
-        'Hero%20Concepts/Ace.txt': `
+        'Projects/Hero%20Concepts/Ace/Ace.txt': `
 
 Ace — Overwatch DPS/Damage Concept
 
@@ -561,7 +572,7 @@ Voicelines:
 - Self/Allies: "PLAY BALL"
 - "HOOOOOT DOOGGG"`,
 
-        'Hero%20Concepts/MilesMoralesMR.txt': `
+        'Projects/Hero%20Concepts/MilesMoralesMR/MilesMoralesMR.txt': `
 
 Miles Morales Character Concept: Support/Strategist
 
@@ -573,7 +584,7 @@ I have 2 main reasonings behind it. A webslinger in every role would
 be amazing for diversity of the cast, and having cool and popular
 characters in the support role helps people to want to play it`,
 
-        'Hero%20Concepts/DocOckMR.txt': `
+        'Projects/Hero%20Concepts/DocOckMR/DocOckMR.txt': `
 
 Doctor Octopus Character Concept: Support/Strategist
 
@@ -601,7 +612,59 @@ Ultimate: All Hands on Deck
 Uses all 4 tentacles to weave a beam of destruction and healing forward for 5 seconds (Moira-like). Afterwards vulnerable until tentacles recharge after 3 seconds.
 
 Team Up: Shared Minds (Spider-Man)
-Oct makes spider bots giving Peter a trap that auto-adds a web tracker`
+Oct makes spider bots giving Peter a trap that auto-adds a web tracker`,
+
+        'Projects/Video%20Games/AISCharon/AISCharon.txt': `
+AIS Charon
+
+A video game concept.
+---
+`,
+
+        'Projects/Software/ClassRegistration/ClassRegistration.txt': `
+University Class Registration Software
+
+Built in a group of 6 as a course registration system.
+Used Azure Cloud Development and SQL to allow users to register for courses.
+Used AI Foundry to make an AI assistant that helped users build their perfect schedule.
+`,
+
+        'Projects/Software/MusicMaker/MusicMaker.txt': `
+Custom Music Making Software
+
+Built in a group of 4, designed a music making software where users could make short songs and play the notes using JavaFX.
+`,
+
+        'Projects/Software/DesignPatterns/DesignPatterns.txt': `
+Basic Design Patterns
+
+Coded the beginner design patterns:
+- Decorator
+- Iterator
+- Observer
+- Singleton
+- State
+- Strategy
+`,
+
+        'Projects/Software/TipTracker/TipTracker.txt': `
+Tip Tracker
+
+A tool for tracking and logging daily tips.
+`,
+
+        'Projects/Software/Portfolio/Portfolio.txt': `
+Portfolio
+
+This website!
+A portfolio built with HTML, CSS, and JavaScript, with an Xbox dashboard inspired tile UI.
+`,
+
+        'Projects/Other/GoatOfGoats/GoatOfGoats.txt': `
+Goat of Goats
+
+The ultimate goat ranking.
+`
     };
 
     document.querySelectorAll('.tile-hero-modal').forEach(tile => {
@@ -702,8 +765,7 @@ Oct makes spider bots giving Peter a trap that auto-adds a web tracker`
     }
 
     // Hero filter dropdown
-    const heroTiles = document.querySelectorAll('#tab-heroconcepts .tile-hero-modal');
-    const filterBar = document.getElementById('heroFilterBar');
+    const heroTiles = document.querySelectorAll('#tab-heroconcepts .tile-hero-modal');    const filterBar = document.getElementById('heroFilterBar');
 
     if (heroTiles.length && filterBar) {
         const tagSet = new Set();
@@ -761,6 +823,73 @@ Oct makes spider bots giving Peter a trap that auto-adds a web tracker`
             label.appendChild(cb);
             label.appendChild(document.createTextNode(tag));
             dropdown.appendChild(label);
+        });
+    }
+
+    // Contact form (Formspree)
+    const contactForm = document.getElementById('contactForm');
+    const contactFormStatus = document.getElementById('contactFormStatus');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (contactFormStatus) {
+                contactFormStatus.className = 'contact-form-status';
+                contactFormStatus.textContent = 'Sending...';
+            }
+            const btn = contactForm.querySelector('.contact-form-btn');
+            if (btn) btn.disabled = true;
+
+            fetch(contactForm.action, {
+                method: 'POST',
+                body: new FormData(contactForm),
+                headers: { 'Accept': 'application/json' }
+            }).then(res => {
+                if (res.ok) {
+                    if (contactFormStatus) {
+                        contactFormStatus.className = 'contact-form-status success';
+                        contactFormStatus.textContent = 'Thanks! Your message has been sent.';
+                    }
+                    contactForm.reset();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            }).catch(() => {
+                if (contactFormStatus) {
+                    contactFormStatus.className = 'contact-form-status error';
+                    contactFormStatus.textContent = 'Oops! Something went wrong. Please try again.';
+                }
+            }).finally(() => {
+                if (btn) btn.disabled = false;
+            });
+        });
+    }
+
+    // Keyboard accessibility: make clickable tiles focusable and operable
+    function makeKeyboardAccessible(selector) {
+        document.querySelectorAll(selector).forEach(el => {
+            if (el.tagName === 'A' || el.tagName === 'BUTTON' || el.tagName === 'INPUT') return;
+            el.setAttribute('tabindex', '0');
+            el.setAttribute('role', 'button');
+            if (!el.hasAttribute('aria-label')) {
+                el.setAttribute('aria-label', el.textContent.trim() || el.dataset.tab || 'Interactive');
+            }
+            el.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    el.click();
+                }
+            });
+        });
+    }
+    makeKeyboardAccessible('.tile-nav, .tile-hero-modal, .tile-dog, #easyModeBtn');
+
+    // Move focus for skip link and tab changes
+    const skipLink = document.querySelector('.skip-link');
+    if (skipLink) {
+        skipLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            content.focus({ preventScroll: true });
         });
     }
 });
