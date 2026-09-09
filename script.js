@@ -963,7 +963,15 @@ The ultimate goat ranking.
     function renderInline(text) {
         return escapeHtml(text)
             .replace(/`([^`]+)`/g, '<code>$1</code>')
-            .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img class="modal-img" src="$2" alt="$1" loading="lazy">')
+            .replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+([0-9]+(?:\.[0-9]+)?%|[0-9]+(?:\.[0-9]+)?x[0-9]+(?:\.[0-9]+)?))?\)/g, (m, alt, src, size) => {
+                let attrs = `class="modal-img" src="${src}" alt="${alt}" loading="lazy"`;
+                if (size) {
+                    const p = size.split('x');
+                    if (p.length === 2) attrs += ` width="${p[0]}" height="${p[1]}"`;
+                    else if (size.endsWith('%')) attrs += ` style="width:${size}"`;
+                }
+                return `<img ${attrs}>`;
+            })
             .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
             .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
             .replace(/(^|[^*])\*([^*\s*][^*]*?)\*(?![*])/g, '$1<em>$2</em>')
