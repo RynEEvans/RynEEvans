@@ -2034,6 +2034,10 @@ body.easy-mode .tile > [class$="-bg"] {
     height: auto;
 }
 
+body.easy-mode .tile-back-bg {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
 body.easy-mode .tile-body {
     position: relative;
     flex: 1;
