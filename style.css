@@ -720,6 +720,10 @@ body {
     cursor: pointer;
 }
 
+#tab-home .tile-featured {
+    cursor: pointer;
+}
+
 /* Featured Tile: Background Image */
 /* TO USE: Replace the URL with your image, e.g. url('images/my-photo.jpg') */
 .tile-featured-bg {

@@ -368,12 +368,23 @@ document.addEventListener('DOMContentLoaded', () => {
         applyImage(t.querySelector('.tile-avatar-bg'), d.image);
     });
 
+    let homeFeaturedNav = { tab: 'software', file: 'Projects/Software/TipTracker/TipTracker.txt' };
+    const homeFeaturedEl = document.querySelector('#tab-home .tile-featured');
+    if (homeFeaturedEl) {
+        homeFeaturedEl.addEventListener('click', () => {
+            playSelect();
+            if (homeFeaturedNav.tab) switchTab(homeFeaturedNav.tab);
+            if (homeFeaturedNav.file) openProjectModal(homeFeaturedNav.file);
+        });
+    }
     loadTile('home/featured', d => {
         const t = document.querySelector('#tab-home .tile-featured');
         if (!t) return;
         applyText(t.querySelector('.tile-label'), d.label);
         applyText(t.querySelector('.tile-featured-title'), d.title);
         applyImage(t.querySelector('.tile-featured-bg'), d.image);
+        if (d.tab) homeFeaturedNav.tab = d.tab;
+        if (d.file) homeFeaturedNav.file = d.file;
     });
 
     loadTile('home/contact', d => {
