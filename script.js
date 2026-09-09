@@ -129,13 +129,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const interestReactiveBg = document.querySelector('.tile-interest-reactive-bg');
     const interestHoverTiles = document.querySelectorAll('.tile-interest-hover');
     const interestImages = {
-        'Video Games': 'images/game1.png',
-        'Music': 'images/band1.png',
-        'Books & Comics': 'images/book1.png'
+        'Video Games': 'images/interests/game1.png',
+        'Music': 'images/interests/band1.png',
+        'Books & Comics': 'images/interests/book1.png'
     };
 
     if (interestReactiveBg) {
-        interestReactiveBg.style.backgroundImage = "url('images/game1.png')";
+        interestReactiveBg.style.backgroundImage = "url('images/interests/game1.png')";
     }
 
     interestHoverTiles.forEach(btn => {
@@ -262,6 +262,274 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         updateEasyModeLabel();
     }
+
+    const featuredTile = document.querySelector('#tab-projects .tile-project-featured');
+    if (featuredTile) {
+        const featuredBg = featuredTile.querySelector('.tile-featured-bg');
+        const featuredTitle = featuredTile.querySelector('.tile-featured-title');
+        const featuredDetail = featuredTile.querySelector('.tile-detail');
+        const featuredTags = featuredTile.querySelector('.project-tags');
+
+        const defaultFeatured = [
+            { title: 'Tip Tracker', detail: 'Track and log your daily tips', tags: ['Software', 'Tips'], image: 'Projects/Software/TipTracker/tip_tracker.png' },
+            { title: 'Class Registration', detail: 'Azure Cloud & SQL', tags: ['Azure', 'SQL'], image: '' },
+            { title: 'Music Maker', detail: 'JavaFX song builder', tags: ['Java', 'JavaFX'], image: '' },
+            { title: 'Design Patterns', detail: 'Decorator, Observer, State & more', tags: ['Design', 'Patterns'], image: '' },
+            { title: 'Portfolio', detail: 'This website!', tags: ['Web'], image: '' },
+            { title: 'AIS Charon', detail: 'Godot metroidvania in development', tags: ['Godot', 'GDScript'], image: 'Projects/Video%20Games/AISCharon/ais_charon.png' },
+            { title: 'Goat of Goats', detail: 'The ultimate goat ranking', tags: ['Fun'], image: '' },
+            { title: 'Nightcrawler', detail: 'Duelist/DPS concept', tags: ['Marvel Rivals', 'DPS'], image: 'Projects/Hero%20Concepts/NightcrawlerMR/NightcrawlerMR.png' },
+            { title: 'Professor X', detail: 'Strategist/Support concept', tags: ['Marvel Rivals', 'Support'], image: 'Projects/Hero%20Concepts/ProfXMR/ProfXMR.png' },
+            { title: 'Ghost Rider', detail: 'Duelist/DPS concept', tags: ['Marvel Rivals', 'DPS'], image: 'Projects/Hero%20Concepts/GhostRiderMR/GhostRiderMR.png' },
+            { title: 'Juggernaut', detail: 'Vanguard/Tank concept', tags: ['Marvel Rivals', 'Tank'], image: 'Projects/Hero%20Concepts/JuggernautMR/JuggernautMR.png' },
+            { title: 'Ace', detail: 'Overwatch DPS concept', tags: ['Overwatch', 'DPS'], image: 'Projects/Hero%20Concepts/Ace/AceOW.png' }
+        ];
+
+        let featuredProjects = defaultFeatured.slice();
+        let featuredIndex = Math.floor(Math.random() * featuredProjects.length);
+        let featuredTimer = null;
+
+        const renderFeatured = (i) => {
+            const p = featuredProjects[i];
+            if (featuredBg) featuredBg.style.backgroundImage = p.image ? `url('${p.image}')` : '';
+            if (featuredTitle) featuredTitle.textContent = p.title;
+            if (featuredDetail) featuredDetail.textContent = p.detail;
+            if (featuredTags) {
+                featuredTags.innerHTML = '';
+                p.tags.forEach(t => {
+                    const span = document.createElement('span');
+                    span.className = 'tag small';
+                    span.textContent = t;
+                    featuredTags.appendChild(span);
+                });
+            }
+        };
+
+        const cycleFeatured = () => {
+            let next;
+            do {
+                next = Math.floor(Math.random() * featuredProjects.length);
+            } while (next === featuredIndex && featuredProjects.length > 1);
+            featuredIndex = next;
+            renderFeatured(featuredIndex);
+        };
+
+        const startFeaturedTimer = () => {
+            if (featuredTimer) clearInterval(featuredTimer);
+            featuredTimer = setInterval(cycleFeatured, 5000);
+        };
+
+        renderFeatured(featuredIndex);
+        startFeaturedTimer();
+        loadTile('projects/featured', d => {
+            if (d && Array.isArray(d.projects) && d.projects.length) {
+                featuredProjects = d.projects;
+                featuredIndex = Math.floor(Math.random() * featuredProjects.length);
+                renderFeatured(featuredIndex);
+                startFeaturedTimer();
+            }
+        });
+
+        featuredTile.addEventListener('click', cycleFeatured);
+        featuredTile.addEventListener('mouseenter', () => clearInterval(featuredTimer));
+        featuredTile.addEventListener('mouseleave', startFeaturedTimer);
+    }
+
+    /* =========================================== */
+    /* TILE DATA FILES                             */
+    /* Tiles load their content from data/<tab>/   */
+    /* =========================================== */
+    function applyText(el, val) {
+        if (el && typeof val === 'string' && val) el.textContent = val;
+    }
+
+    function applyImage(el, img) {
+        if (!el) return;
+        if (typeof img === 'string' && img) el.style.backgroundImage = `url('${img}')`;
+        else if (typeof img === 'string') el.style.backgroundImage = '';
+    }
+
+    function loadTile(file, apply) {
+        fetch(`data/${file}.json`)
+            .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+            .then(apply)
+            .catch(() => {});
+    }
+
+    loadTile('home/avatar', d => {
+        const t = document.querySelector('#tab-home .tile-avatar');
+        if (!t) return;
+        applyText(t.querySelector('.avatar-name'), d.name);
+        applyImage(t.querySelector('.tile-avatar-bg'), d.image);
+    });
+
+    loadTile('home/featured', d => {
+        const t = document.querySelector('#tab-home .tile-featured');
+        if (!t) return;
+        applyText(t.querySelector('.tile-label'), d.label);
+        applyText(t.querySelector('.tile-featured-title'), d.title);
+        applyImage(t.querySelector('.tile-featured-bg'), d.image);
+    });
+
+    loadTile('home/contact', d => {
+        const t = document.querySelector('#tab-home .tile-social');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.label);
+        applyImage(t.querySelector('.tile-social-bg'), d.image);
+    });
+
+    loadTile('home/projects', d => {
+        const t = document.querySelector('#tab-home .tile-projects-home');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.label);
+        applyImage(t.querySelector('.tile-project-bg'), d.image);
+    });
+
+    loadTile('about/resume', d => {
+        const t = document.querySelector('#tab-about .tile-resume');
+        if (!t) return;
+        applyText(t.querySelector('.tile-label'), d.label);
+        applyText(t.querySelector('h3'), d.title);
+        applyText(t.querySelector('.tile-detail'), d.detail);
+        applyImage(t.querySelector('.tile-resume-bg'), d.image);
+    });
+
+    loadTile('about/university', d => {
+        const t = document.querySelector('#tab-about .tile-university');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.title);
+        applyImage(t.querySelector('.tile-university-bg'), d.image);
+    });
+
+    loadTile('about/twin', d => {
+        const t = document.querySelector('#tab-about .tile-twin');
+        if (!t) return;
+        applyText(t.querySelector('.tile-label'), d.label);
+        applyText(t.querySelector('h3'), d.title);
+        applyImage(t.querySelector('.tile-twin-bg'), d.image);
+        if (typeof d.link === 'string' && d.link) t.href = d.link;
+    });
+
+    loadTile('about/learning', d => {
+        const t = document.querySelector('#tab-about .tile-learning');
+        if (!t) return;
+        applyText(t.querySelector('.tile-label'), d.label);
+        const tagsBox = t.querySelector('.skill-tags');
+        if (tagsBox && Array.isArray(d.tags)) {
+            tagsBox.innerHTML = '';
+            d.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'tag';
+                span.textContent = tag;
+                tagsBox.appendChild(span);
+            });
+        }
+    });
+
+    loadTile('about/interests', d => {
+        const t = document.querySelector('#tab-about .tile-interest-about');
+        if (!t) return;
+        applyText(t.querySelector('.tile-label'), d.label);
+        applyText(t.querySelector('h3'), d.title);
+        applyText(t.querySelector('.tile-detail'), d.detail);
+        applyImage(t.querySelector('.tile-interest-about-bg'), d.image);
+    });
+
+    loadTile('projects/vgd', d => {
+        const t = document.querySelector('#tab-projects .tile-project-vgd');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.title);
+        applyImage(t.querySelector('.tile-videogame-bg'), d.image);
+    });
+
+    loadTile('projects/software', d => {
+        const t = document.querySelector('#tab-projects .tile-project-coding');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.title);
+    });
+
+    loadTile('projects/other', d => {
+        const t = document.querySelector('#tab-projects .tile-project-other');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.title);
+    });
+
+    loadTile('projects/dog', d => {
+        const t = document.querySelector('#tab-projects .tile-dog');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.title);
+        applyImage(t.querySelector('.tile-dog-bg'), d.image);
+    });
+
+    const updateReactiveBg = () => {
+        if (interestReactiveBg) {
+            interestReactiveBg.style.backgroundImage = `url('${interestImages['Video Games']}')`;
+        }
+    };
+
+    loadTile('interests/games', d => {
+        const t = document.querySelector('.tile-interest-hover[data-interest="Video Games"]');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.title);
+        applyImage(t.querySelector('.tile-interest-bg'), d.image);
+        if (typeof d.reactive === 'string' && d.reactive) interestImages['Video Games'] = d.reactive;
+        updateReactiveBg();
+    });
+
+    loadTile('interests/music', d => {
+        const t = document.querySelector('.tile-interest-hover[data-interest="Music"]');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.title);
+        applyImage(t.querySelector('.tile-interest-bg'), d.image);
+        if (typeof d.reactive === 'string' && d.reactive) interestImages['Music'] = d.reactive;
+    });
+
+    loadTile('interests/books', d => {
+        const t = document.querySelector('.tile-interest-hover[data-interest="Books & Comics"]');
+        if (!t) return;
+        applyText(t.querySelector('h3'), d.title);
+        applyImage(t.querySelector('.tile-interest-bg'), d.image);
+        if (typeof d.reactive === 'string' && d.reactive) interestImages['Books & Comics'] = d.reactive;
+    });
+
+    /* Project tiles (Software, Video Games, Other, Hero Concepts) */
+    function applyProjectTile(d, file) {
+        const t = document.querySelector(`[data-file="${file}"]`);
+        if (!t) return;
+        applyText(t.querySelector('.tile-label'), d.label);
+        applyText(t.querySelector('h3'), d.title);
+        applyText(t.querySelector('.tile-detail'), d.detail);
+        applyImage(t.querySelector('.tile-hero-bg'), d.image);
+        const tagsBox = t.querySelector('.project-tags');
+        if (tagsBox && Array.isArray(d.tags)) {
+            tagsBox.innerHTML = '';
+            d.tags.forEach(tag => {
+                const s = document.createElement('span');
+                s.className = 'tag small';
+                s.textContent = tag;
+                tagsBox.appendChild(s);
+            });
+        }
+        if (Array.isArray(d.tags)) t.dataset.tags = d.tags.join(',');
+    }
+
+    loadTile('software/class-registration', d => applyProjectTile(d, 'Projects/Software/ClassRegistration/ClassRegistration.txt'));
+    loadTile('software/music-maker', d => applyProjectTile(d, 'Projects/Software/MusicMaker/MusicMaker.txt'));
+    loadTile('software/design-patterns', d => applyProjectTile(d, 'Projects/Software/DesignPatterns/DesignPatterns.txt'));
+    loadTile('software/tip-tracker', d => applyProjectTile(d, 'Projects/Software/TipTracker/TipTracker.txt'));
+    loadTile('software/portfolio', d => applyProjectTile(d, 'Projects/Software/Portfolio/Portfolio.txt'));
+    loadTile('other/goat-of-goats', d => applyProjectTile(d, 'Projects/Other/GoatOfGoats/GoatOfGoats.txt'));
+    loadTile('videogames/ais-charon', d => applyProjectTile(d, 'Projects/Video%20Games/AISCharon/AISCharon.txt'));
+    loadTile('heroconcepts/nightcrawler', d => applyProjectTile(d, 'Projects/Hero%20Concepts/NightcrawlerMR/NightcrawlerMR.txt'));
+    loadTile('heroconcepts/prof-x', d => applyProjectTile(d, 'Projects/Hero%20Concepts/ProfXMR/ProfXMR.txt'));
+    loadTile('heroconcepts/ant-man-wasp', d => applyProjectTile(d, 'Projects/Hero%20Concepts/AntManWaspMR/AntManWaspMR.txt'));
+    loadTile('heroconcepts/daredevil', d => applyProjectTile(d, 'Projects/Hero%20Concepts/DaredevilMR/DaredevilMR.txt'));
+    loadTile('heroconcepts/ghost-rider', d => applyProjectTile(d, 'Projects/Hero%20Concepts/GhostRiderMR/GhostRiderMR.txt'));
+    loadTile('heroconcepts/ghost-rider-vanguard', d => applyProjectTile(d, 'Projects/Hero%20Concepts/GhostRiderVanguardMR/GhostRiderVanguardMR.txt'));
+    loadTile('heroconcepts/juggernaut', d => applyProjectTile(d, 'Projects/Hero%20Concepts/JuggernautMR/JuggernautMR.txt'));
+    loadTile('heroconcepts/miles-morales', d => applyProjectTile(d, 'Projects/Hero%20Concepts/MilesMoralesMR/MilesMoralesMR.txt'));
+    loadTile('heroconcepts/ace', d => applyProjectTile(d, 'Projects/Hero%20Concepts/Ace/Ace.txt'));
+    loadTile('heroconcepts/doc-ock', d => applyProjectTile(d, 'Projects/Hero%20Concepts/DocOckMR/DocOckMR.txt'));
 
     function positionArrows() {
         if (window.innerWidth < 700) {
@@ -697,14 +965,14 @@ The ultimate goat ranking.
     const dogTile = document.querySelector('.tile-dog');
 
     const dogImages = [
-        'images/Dog/dog.png',
-        'images/Dog/dog_bread.png',
-        'images/Dog/dog_fry.png',
-        'images/Dog/dog_grass.png',
-        'images/Dog/dog_puppy.png',
-        'images/Dog/dog_silly.png',
-        'images/Dog/dog_smile.png',
-        'images/Dog/dog_stick.png'
+        'images/projects/Dog/dog.png',
+        'images/projects/Dog/dog_bread.png',
+        'images/projects/Dog/dog_fry.png',
+        'images/projects/Dog/dog_grass.png',
+        'images/projects/Dog/dog_puppy.png',
+        'images/projects/Dog/dog_silly.png',
+        'images/projects/Dog/dog_smile.png',
+        'images/projects/Dog/dog_stick.png'
     ];
 
     const dogViewModal = document.getElementById('dogViewModal');

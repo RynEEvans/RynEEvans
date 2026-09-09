@@ -1,3 +1,5 @@
 Tip Tracker
 
-A tool for tracking and logging daily tips.
+A tool for tracking and logging daily tips for a server
+
+I made this tool when I first got hired to be a Server at Denny's. I use it to track my tips and to see how much cash on hand I have. I also made an hourly wage tracker just to satisfy my own curiosity. I don't plan on publishing this app, just wanted to make something just for me.

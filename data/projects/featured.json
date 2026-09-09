@@ -1,0 +1,16 @@
+{
+    "projects": [
+        { "title": "Tip Tracker", "detail": "Track and log your daily tips", "tags": ["Software", "Tips"], "image": "Projects/Software/TipTracker/tip_tracker.png" },
+        { "title": "Class Registration", "detail": "Azure Cloud & SQL", "tags": ["Azure", "SQL"], "image": "" },
+        { "title": "Music Maker", "detail": "JavaFX song builder", "tags": ["Java", "JavaFX"], "image": "" },
+        { "title": "Design Patterns", "detail": "Decorator, Observer, State & more", "tags": ["Design", "Patterns"], "image": "" },
+        { "title": "Portfolio", "detail": "This website!", "tags": ["Web"], "image": "" },
+        { "title": "AIS Charon", "detail": "Godot metroidvania in development", "tags": ["Godot", "GDScript"], "image": "Projects/Video%20Games/AISCharon/ais_charon.png" },
+        { "title": "Goat of Goats", "detail": "The ultimate goat ranking", "tags": ["Fun"], "image": "" },
+        { "title": "Nightcrawler", "detail": "Duelist/DPS concept", "tags": ["Marvel Rivals", "DPS"], "image": "Projects/Hero%20Concepts/NightcrawlerMR/NightcrawlerMR.png" },
+        { "title": "Professor X", "detail": "Strategist/Support concept", "tags": ["Marvel Rivals", "Support"], "image": "Projects/Hero%20Concepts/ProfXMR/ProfXMR.png" },
+        { "title": "Ghost Rider", "detail": "Duelist/DPS concept", "tags": ["Marvel Rivals", "DPS"], "image": "Projects/Hero%20Concepts/GhostRiderMR/GhostRiderMR.png" },
+        { "title": "Juggernaut", "detail": "Vanguard/Tank concept", "tags": ["Marvel Rivals", "Tank"], "image": "Projects/Hero%20Concepts/JuggernautMR/JuggernautMR.png" },
+        { "title": "Ace", "detail": "Overwatch DPS concept", "tags": ["Overwatch", "DPS"], "image": "Projects/Hero%20Concepts/Ace/AceOW.png" }
+    ]
+}
