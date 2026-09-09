@@ -536,8 +536,82 @@ body {
     color: #ccc;
     font-size: 14px;
     line-height: 1.7;
-    white-space: pre-wrap;
+    white-space: normal;
     font-family: inherit;
+}
+
+.hero-modal-body p {
+    margin: 0 0 12px;
+}
+
+.hero-modal-body p:last-child {
+    margin-bottom: 0;
+}
+
+.hero-modal-body h1,
+.hero-modal-body h2,
+.hero-modal-body h3,
+.hero-modal-body h4,
+.hero-modal-body h5,
+.hero-modal-body h6 {
+    color: #fff;
+    margin: 20px 0 8px;
+    line-height: 1.3;
+}
+
+.hero-modal-body h1 { font-size: 20px; }
+.hero-modal-body h2 { font-size: 18px; }
+.hero-modal-body h3 { font-size: 16px; }
+.hero-modal-body h4 { font-size: 15px; }
+.hero-modal-body h5 { font-size: 14px; }
+.hero-modal-body h6 { font-size: 13px; }
+
+.hero-modal-body h1:first-child {
+    margin-top: 0;
+}
+
+.hero-modal-body ul,
+.hero-modal-body ol {
+    margin: 0 0 12px;
+    padding-left: 22px;
+}
+
+.hero-modal-body li {
+    margin: 2px 0;
+}
+
+.hero-modal-body blockquote {
+    margin: 0 0 12px;
+    padding: 2px 14px;
+    border-left: 3px solid #2a5298;
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.hero-modal-body code {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.9em;
+}
+
+.hero-modal-body hr {
+    border: none;
+    border-top: 1px solid #2a5298;
+    margin: 16px 0;
+}
+
+.hero-modal-body a {
+    color: #6ea8ff;
+    text-decoration: underline;
+}
+
+.hero-modal-body a:hover {
+    color: #fff;
+}
+
+.hero-modal-body del {
+    color: #888;
 }
 
 .hero-modal-body .modal-img {
@@ -2372,6 +2446,23 @@ body.easy-mode .dog-modal-content {
 
 body.easy-mode .hero-modal-body {
     color: #1a1a1a;
+}
+
+body.easy-mode .hero-modal-body h1,
+body.easy-mode .hero-modal-body h2,
+body.easy-mode .hero-modal-body h3,
+body.easy-mode .hero-modal-body h4,
+body.easy-mode .hero-modal-body h5,
+body.easy-mode .hero-modal-body h6 {
+    color: #111;
+}
+
+body.easy-mode .hero-modal-body hr {
+    border-top-color: #d0d0d0;
+}
+
+body.easy-mode .hero-modal-body code {
+    background: rgba(0, 0, 0, 0.08);
 }
 
 body.easy-mode .hero-modal-close,

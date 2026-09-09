@@ -960,26 +960,89 @@ The ultimate goat ranking.
             .replace(/'/g, '&#39;');
     }
 
-    function renderLine(line) {
-        const re = /!\[([^\]]*)\]\(([^)]+)\)/;
-        let out = '';
-        let rest = line;
-        let m;
-        while ((m = rest.match(re)) !== null) {
-            out += escapeHtml(rest.slice(0, m.index));
-            out += `<img class="modal-img" src="${escapeHtml(m[2])}" alt="${escapeHtml(m[1])}" loading="lazy">`;
-            rest = rest.slice(m.index + m[0].length);
-        }
-        out += escapeHtml(rest);
-        return out;
+    function renderInline(text) {
+        return escapeHtml(text)
+            .replace(/`([^`]+)`/g, '<code>$1</code>')
+            .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img class="modal-img" src="$2" alt="$1" loading="lazy">')
+            .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+            .replace(/(^|[^*])\*([^*\s*][^*]*?)\*(?![*])/g, '$1<em>$2</em>')
+            .replace(/~~([^~]+)~~/g, '<del>$1</del>');
     }
 
     function renderModalText(text) {
-        const blocks = String(text).replace(/\r\n/g, '\n').split(/\n{2,}/);
-        return blocks
-            .filter(b => b.trim() !== '')
-            .map(b => `<p>${b.split('\n').map(renderLine).join('<br>')}</p>`)
-            .join('');
+        const lines = String(text).replace(/\r\n/g, '\n').split('\n');
+        const out = [];
+        let list = null;
+
+        const closeList = () => {
+            if (!list) return;
+            out.push(`<${list.type}>`);
+            list.items.forEach(item => out.push(`<li>${item}</li>`));
+            out.push(`</${list.type}>`);
+            list = null;
+        };
+
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            const trimmed = line.trim();
+
+            if (trimmed === '') { closeList(); continue; }
+
+            const heading = trimmed.match(/^(#{1,6})\s+(.*)$/);
+            if (heading) {
+                closeList();
+                out.push(`<h${heading[1].length}>${renderInline(heading[2])}</h${heading[1].length}>`);
+                continue;
+            }
+
+            if (/^(?:-{3,}|\*{3,}|_{3,})$/.test(trimmed)) {
+                closeList();
+                out.push('<hr>');
+                continue;
+            }
+
+            if (trimmed.startsWith('>')) {
+                closeList();
+                const quote = [];
+                while (i < lines.length && lines[i].trim().startsWith('>')) {
+                    quote.push(lines[i].trim().replace(/^>\s?/, ''));
+                    i++;
+                }
+                i--;
+                out.push(`<blockquote>${quote.map(renderInline).join('<br>')}</blockquote>`);
+                continue;
+            }
+
+            const ulItem = trimmed.match(/^[-*]\s+(.*)$/);
+            const olItem = trimmed.match(/^\d+[.)]\s+(.*)$/);
+            if (ulItem || olItem) {
+                closeList();
+                const type = ulItem ? 'ul' : 'ol';
+                list = { type, items: [renderInline((ulItem || olItem)[1])] };
+                while (i + 1 < lines.length) {
+                    const n = lines[i + 1].trim();
+                    const nU = n.match(/^[-*]\s+(.*)$/);
+                    const nO = n.match(/^\d+[.)]\s+(.*)$/);
+                    if ((type === 'ul' && nU) || (type === 'ol' && nO)) {
+                        list.items.push(renderInline((nU || nO)[1]));
+                        i++;
+                    } else break;
+                }
+                continue;
+            }
+
+            closeList();
+            const para = [];
+            while (i < lines.length && lines[i].trim() !== '') {
+                para.push(renderInline(lines[i]));
+                i++;
+            }
+            i--;
+            out.push(`<p>${para.join('<br>')}</p>`);
+        }
+        closeList();
+        return out.join('');
     }
 
     function openProjectModal(file) {
