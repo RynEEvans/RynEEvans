@@ -1,5 +1,5 @@
 Goat of Goats
 
 Goat of Goats is something I do on Instagram where I ask my followers (it's a small following of my friends I'm no influencer) who is the Greatest Of All Time (GOAT) of being the Greatest Of All Time. To put it simpler, who has the biggest gap between 1st and 2nd place.
-![Screenshot](C:\Users\bluef\OneDrive\Documents\GitHub\RynEEvans\Projects\Other\GoatOfGoats\tournament.png)
+![Screenshot](Projects/Other/GoatOfGoats/tournament.png)
 I make a tournament style bracket that they vote on to determine the winner. the contenstants cna range from people like Joey Chestnut to the spice Salt who is currently the reigning champion.
