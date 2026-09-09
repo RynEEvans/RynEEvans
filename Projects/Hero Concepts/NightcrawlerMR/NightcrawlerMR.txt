@@ -6,19 +6,19 @@
 
 ## Primary Fire: Sword Slash
 
-![Artwork](https://pbs.twimg.com/media/Gf8gmORWYAAJEth?format=jpg&name=medium 300x300)
+![Sword Slash](Projects/Hero%20Concepts/NightcrawlerMR/nightcrawler_sword_slash.jpg 300x300)
 
 For his primary fire I'd of course do the 2 swords. Just a simple slash combo similar to other melee characters, I wouldn't do the 3rd sword so the tail can be more expressive and look cool when he jumps and stuff
 
 ## Ability 1: BAMF
 
-![Artwork](https://pbs.twimg.com/media/Gf8hUY7XQAAdLoJ?format=jpg&name=medium 300x300)
+![BAMF](Projects/Hero%20Concepts/NightcrawlerMR/nightcrawler_bamf.jpg 300x300)
 
 He teleports by aiming where he wants to go similar to a Loki clone but where he's switching to the spot instead of placing something
 
 ## Ability 2: Mein Freund
 
-![Artwork](https://pbs.twimg.com/media/Gf8hwCQWwAAkfAH?format=jpg&name=small 300x300)
+![Mein Freund](Projects/Hero%20Concepts/NightcrawlerMR/nightcrawler_mein_freund.jpg 300x300)
 
 Marks a teammate which he can then instantly teleport to by pressing the button again
 
@@ -26,13 +26,13 @@ Cooldown would start after he teleports to the teammate
 
 ## Passive: Acrobatics
 
-![Artwork](https://pbs.twimg.com/media/Gf8iCmOXEAAOUfw?format=jpg&name=small 300x300)
+![Acrobatics](Projects/Hero%20Concepts/NightcrawlerMR/nightcrawler_acrobatics.jpg 300x300)
 
 He gets a double jump similar to Spider-Man (no cooldown) and a similar wall climb as well, but I don't think a wall run
 
 ## Ultimate: Hopesword
 
-![Artwork](https://pbs.twimg.com/media/Gf8iY-oXwAAg85I?format=jpg&name=medium 300x300)
+![Hopesword](Projects/Hero%20Concepts/NightcrawlerMR/nightcrawler_hopesword.jpg 300x300)
 
 Pulls his Hopesword from his chest doing massive damage (125)
 
@@ -43,7 +43,7 @@ Last for 8 seconds
 ## Possible Costumes:
 
 Judgment Day design
-![Artwork](https://pbs.twimg.com/media/Gf8ilLLXQAAvNLv?format=jpg&name=medium 300x300)
+![Judgment Day](Projects/Hero%20Concepts/NightcrawlerMR/nightcrawler_costume_judgment_day.jpg 300x300)
 
 Uncanny Spiderman design
-![Artwork](https://pbs.twimg.com/media/Gf8ilLkWAAAq7g4?format=jpg&name=small 300x300)
+![Uncanny Spider-Man](Projects/Hero%20Concepts/NightcrawlerMR/nightcrawler_costume_spiderman.jpg 300x300)

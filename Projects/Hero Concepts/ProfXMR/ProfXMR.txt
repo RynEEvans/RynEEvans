@@ -1,31 +1,41 @@
-Professor X Character Concept: Support/Strategist (1/?)
+Professor X Character Concept
+
+Support/Strategist
 
 ---
 
 Primary Fire: Psychic Aid
+
+![Psychic Aid](Projects\Hero Concepts\ProfXMR\psychic_aid.png 300x300)
 He would have a similar auto aim lock on to scarlet witch or C&D but it would pulse either healing or damage to allies and enemies respectively. Not having insane damage though like Cloak, I'm thinking more like 50 damage per se and 100 HP per sec
 
 Ability 1: Mental Wave
+
+![Mental Wave](Projects\Hero Concepts\ProfXMR\mental_wave.png 300x300)
 Heals allies and damage enemies in a CLOSE proximity (like 10 meters MAX imo) heals allies a TON like 200-300 and damage pretty good like maybe 100
 Long cooldown
 
 Ability 2: Chair Booster
+
+![Chair Booster](Projects\Hero Concepts\ProfXMR\chair_booster.png 300x300)
 Just a slight thruster in the direction Xavier is looking, similar to rockets but not as frequent. Just a slight movement tool
 
 Ultimate(s?):
+
 For his ultimates I originally had an idea but realized it was DPS focused but was still too cool not to share so I will. Maybe it could be a cool ability if nerfed or maybe he could choose between which ult like Symmetra could in OW idk
 
 1st Ultimate: Dark Charles
+
+![Dark Xavier](Projects\Hero Concepts\ProfXMR\dark_xavier.png 300x300)
 It's from the X-Men cartoon originally but I think it was adapted into the comics. Xavier has a dark side of his mind where he unleashes powerful psychic attacks that feel real to the user leaving "him" invulnerable
 
-Dark Xavier cont
 In the game id imagine he'd project this from himself and then on a timer he'd be able to kill enemies while being invulnerable, but leaving his real body EXTREMELY vulnerable and when he dies it cancels the ult immediately
 
 2nd Ultimate: Psychic Overload
+
+![Psychic Overload](Projects\Hero Concepts\ProfXMR\psycic_overload.png 300x300)
 Similar to Dr Stranger's Eye of Agamodo, but instead of it damage buffs all allies in radius and resets all ability cooldowns
 This one is leaning way more support and feels more appropriate for a strategist.
 
 Passive: Tech Chair
 He gets slow fall with the chair
-
-Thank you for reading!!!

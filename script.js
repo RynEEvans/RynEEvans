@@ -1053,13 +1053,26 @@ The ultimate goat ranking.
         return out.join('');
     }
 
+    function prefetchModalImages(root) {
+        root.querySelectorAll('img').forEach(img => {
+            const src = img.getAttribute('src');
+            if (!src) return;
+            const probe = new Image();
+            probe.src = src;
+        });
+    }
+
     function openProjectModal(file) {
         if (!file) return;
         heroModalBody.innerHTML = renderModalText(heroContent[file] || 'Content not found.');
+        prefetchModalImages(heroModalBody);
         heroModal.classList.add('active');
         fetch(file)
             .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
-            .then(text => { heroModalBody.innerHTML = renderModalText(text); })
+            .then(text => {
+                heroModalBody.innerHTML = renderModalText(text);
+                prefetchModalImages(heroModalBody);
+            })
             .catch(() => {});
     }
 
