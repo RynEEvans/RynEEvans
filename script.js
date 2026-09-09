@@ -271,18 +271,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const featuredTags = featuredTile.querySelector('.project-tags');
 
         const defaultFeatured = [
-            { title: 'Tip Tracker', detail: 'Track and log your daily tips', tags: ['Software', 'Tips'], image: 'Projects/Software/TipTracker/tip_tracker.png' },
-            { title: 'Class Registration', detail: 'Azure Cloud & SQL', tags: ['Azure', 'SQL'], image: '' },
-            { title: 'Music Maker', detail: 'JavaFX song builder', tags: ['Java', 'JavaFX'], image: '' },
-            { title: 'Design Patterns', detail: 'Decorator, Observer, State & more', tags: ['Design', 'Patterns'], image: '' },
-            { title: 'Portfolio', detail: 'This website!', tags: ['Web'], image: '' },
-            { title: 'AIS Charon', detail: 'Godot metroidvania in development', tags: ['Godot', 'GDScript'], image: 'Projects/Video%20Games/AISCharon/ais_charon.png' },
-            { title: 'Goat of Goats', detail: 'The ultimate goat ranking', tags: ['Fun'], image: '' },
-            { title: 'Nightcrawler', detail: 'Duelist/DPS concept', tags: ['Marvel Rivals', 'DPS'], image: 'Projects/Hero%20Concepts/NightcrawlerMR/NightcrawlerMR.png' },
-            { title: 'Professor X', detail: 'Strategist/Support concept', tags: ['Marvel Rivals', 'Support'], image: 'Projects/Hero%20Concepts/ProfXMR/ProfXMR.png' },
-            { title: 'Ghost Rider', detail: 'Duelist/DPS concept', tags: ['Marvel Rivals', 'DPS'], image: 'Projects/Hero%20Concepts/GhostRiderMR/GhostRiderMR.png' },
-            { title: 'Juggernaut', detail: 'Vanguard/Tank concept', tags: ['Marvel Rivals', 'Tank'], image: 'Projects/Hero%20Concepts/JuggernautMR/JuggernautMR.png' },
-            { title: 'Ace', detail: 'Overwatch DPS concept', tags: ['Overwatch', 'DPS'], image: 'Projects/Hero%20Concepts/Ace/AceOW.png' }
+            { title: 'Tip Tracker', detail: 'Track and log your daily tips', tags: ['Software', 'Tips'], image: 'Projects/Software/TipTracker/tip_tracker.png', tab: 'software', file: 'Projects/Software/TipTracker/TipTracker.txt' },
+            { title: 'Class Registration', detail: 'Azure Cloud & SQL', tags: ['Azure', 'SQL'], image: '', tab: 'software', file: 'Projects/Software/ClassRegistration/ClassRegistration.txt' },
+            { title: 'Music Maker', detail: 'JavaFX song builder', tags: ['Java', 'JavaFX'], image: '', tab: 'software', file: 'Projects/Software/MusicMaker/MusicMaker.txt' },
+            { title: 'Design Patterns', detail: 'Decorator, Observer, State & more', tags: ['Design', 'Patterns'], image: '', tab: 'software', file: 'Projects/Software/DesignPatterns/DesignPatterns.txt' },
+            { title: 'Portfolio', detail: 'This website!', tags: ['Web'], image: '', tab: 'software', file: 'Projects/Software/Portfolio/Portfolio.txt' },
+            { title: 'AIS Charon', detail: 'Godot metroidvania in development', tags: ['Godot', 'GDScript'], image: 'Projects/Video%20Games/AISCharon/ais_charon.png', tab: 'videogames', file: 'Projects/Video%20Games/AISCharon/AISCharon.txt' },
+            { title: 'Goat of Goats', detail: 'The ultimate goat ranking', tags: ['Fun'], image: '', tab: 'other', file: 'Projects/Other/GoatOfGoats/GoatOfGoats.txt' },
+            { title: 'Nightcrawler', detail: 'Duelist/DPS concept', tags: ['Marvel Rivals', 'DPS'], image: 'Projects/Hero%20Concepts/NightcrawlerMR/NightcrawlerMR.png', tab: 'heroconcepts', file: 'Projects/Hero%20Concepts/NightcrawlerMR/NightcrawlerMR.txt' },
+            { title: 'Professor X', detail: 'Strategist/Support concept', tags: ['Marvel Rivals', 'Support'], image: 'Projects/Hero%20Concepts/ProfXMR/ProfXMR.png', tab: 'heroconcepts', file: 'Projects/Hero%20Concepts/ProfXMR/ProfXMR.txt' },
+            { title: 'Ghost Rider', detail: 'Duelist/DPS concept', tags: ['Marvel Rivals', 'DPS'], image: 'Projects/Hero%20Concepts/GhostRiderMR/GhostRiderMR.png', tab: 'heroconcepts', file: 'Projects/Hero%20Concepts/GhostRiderMR/GhostRiderMR.txt' },
+            { title: 'Juggernaut', detail: 'Vanguard/Tank concept', tags: ['Marvel Rivals', 'Tank'], image: 'Projects/Hero%20Concepts/JuggernautMR/JuggernautMR.png', tab: 'heroconcepts', file: 'Projects/Hero%20Concepts/JuggernautMR/JuggernautMR.txt' },
+            { title: 'Ace', detail: 'Overwatch DPS concept', tags: ['Overwatch', 'DPS'], image: 'Projects/Hero%20Concepts/Ace/AceOW.png', tab: 'heroconcepts', file: 'Projects/Hero%20Concepts/Ace/Ace.txt' }
         ];
 
         let featuredProjects = defaultFeatured.slice();
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const startFeaturedTimer = () => {
             if (featuredTimer) clearInterval(featuredTimer);
-            featuredTimer = setInterval(cycleFeatured, 5000);
+            featuredTimer = setInterval(cycleFeatured, 2000);
         };
 
         renderFeatured(featuredIndex);
@@ -330,7 +330,12 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        featuredTile.addEventListener('click', cycleFeatured);
+        featuredTile.addEventListener('click', () => {
+            const p = featuredProjects[featuredIndex];
+            playSelect();
+            if (p && p.tab) switchTab(p.tab);
+            if (p && p.file) openProjectModal(p.file);
+        });
         featuredTile.addEventListener('mouseenter', () => clearInterval(featuredTimer));
         featuredTile.addEventListener('mouseleave', startFeaturedTimer);
     }
@@ -935,12 +940,50 @@ The ultimate goat ranking.
 `
     };
 
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+
+    function renderLine(line) {
+        const re = /!\[([^\]]*)\]\(([^)]+)\)/;
+        let out = '';
+        let rest = line;
+        let m;
+        while ((m = rest.match(re)) !== null) {
+            out += escapeHtml(rest.slice(0, m.index));
+            out += `<img class="modal-img" src="${escapeHtml(m[2])}" alt="${escapeHtml(m[1])}" loading="lazy">`;
+            rest = rest.slice(m.index + m[0].length);
+        }
+        out += escapeHtml(rest);
+        return out;
+    }
+
+    function renderModalText(text) {
+        const blocks = String(text).replace(/\r\n/g, '\n').split(/\n{2,}/);
+        return blocks
+            .filter(b => b.trim() !== '')
+            .map(b => `<p>${b.split('\n').map(renderLine).join('<br>')}</p>`)
+            .join('');
+    }
+
+    function openProjectModal(file) {
+        if (!file) return;
+        heroModalBody.innerHTML = renderModalText(heroContent[file] || 'Content not found.');
+        heroModal.classList.add('active');
+        fetch(file)
+            .then(r => { if (!r.ok) throw new Error(r.status); return r.text(); })
+            .then(text => { heroModalBody.innerHTML = renderModalText(text); })
+            .catch(() => {});
+    }
+
     document.querySelectorAll('.tile-hero-modal').forEach(tile => {
         tile.addEventListener('click', () => {
-            const file = tile.dataset.file;
-            if (!file) return;
-            heroModalBody.textContent = heroContent[file] || 'Content not found.';
-            heroModal.classList.add('active');
+            openProjectModal(tile.dataset.file);
         });
     });
 

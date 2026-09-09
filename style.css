@@ -540,6 +540,14 @@ body {
     font-family: inherit;
 }
 
+.hero-modal-body .modal-img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 10px auto;
+    border-radius: 8px;
+}
+
 /* ============================================ */
 /* DOG MODAL — Collage                         */
 /* ============================================ */
@@ -2044,6 +2052,20 @@ body.easy-mode .tile-featured > [class$="-bg"] {
 
 body.easy-mode .tile-featured .tile-body {
     align-items: flex-start;
+}
+
+/* Easy mode: featured project gallery puts the image on the left, text on the right */
+body.easy-mode .tile-project-featured {
+    flex-direction: row;
+}
+
+body.easy-mode .tile-project-featured > [class$="-bg"] {
+    flex: 0 0 260px;
+    height: auto;
+}
+
+body.easy-mode .tile-project-featured .tile-body {
+    justify-content: center;
 }
 
 /* Compact Video Game Design and Software Development so Other Projects fits */
